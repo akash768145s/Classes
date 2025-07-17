@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>prompt() Demo</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 4rem;
+      }
+      #greeting {
+        font-size: 1.4rem;
+        margin-top: 2rem;
+      }
+      button {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript <code>prompt()</code> Example</h1>
+    <button id="askBtn">Ask my name</button>
+    <p id="greeting"></p>
+
+    <script>
+      // Get the button element
+      const btn = document.getElementById("askBtn");
+
+      // Attach a click handler
+      btn.addEventListener("click", () => {
+        // 1️⃣ Show the prompt dialog
+        const name = prompt("Hi there! What is your name?");
+
+        // 2️⃣ If the user didn't press Cancel
+        if (name !== null && name.trim() !== "") {
+          // Show greeting in an alert
+          alert(`Nice to meet you, ${name}!`);
+
+          // Also write greeting on the page
+          document.getElementById("greeting").textContent = `Welcome, ${name}! 👋`;
+        } else {
+          // Optional: handle Cancel or empty input
+          alert("No name? Maybe next time!");
+        }
+      });
+    </script>
+  </body>
+</html>

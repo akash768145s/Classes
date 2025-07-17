@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Handling Playground</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css"
+    />
+  </head>
+  <body>
+    <nav class="top-nav">
+      <ul>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#lightSwitchDemo">Click Events</a></li>
+        <li><a href="#keyEventsDemo">Keyboard Events</a></li>
+        <li><a href="#mouseEventsDemo">Mouse Events</a></li>
+        <li><a href="#bubblingDemo">Event Bubbling</a></li>
+        <li><a href="#formDemo">Form Events</a></li>
+        <li><a href="#realWorldExamples">Real-World Examples</a></li>
+      </ul>
+    </nav>
+
+    <header id="intro">
+      <h1>Event Handling Playground 🎮</h1>
+      <p>Learn JavaScript events through interactive examples!</p>
+
+      <div class="concept-box">
+        <h3>What is Event Handling? 🤔</h3>
+        <p>
+          Event handling is how JavaScript listens and responds to user actions
+          or browser events. It's the foundation of interactive web
+          applications.
+        </p>
+
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li>
+            <strong>Event Listener:</strong> A function that "listens" for
+            specific events
+          </li>
+          <li>
+            <strong>Event Object:</strong> Contains information about the event
+            that occurred
+          </li>
+          <li>
+            <strong>Event Types:</strong> click, keydown, submit, mouseover,
+            etc.
+          </li>
+          <li>
+            <strong>Event Propagation:</strong> How events move through the DOM
+            tree
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- Light Switch Demo -->
+      <section class="demo-section" id="lightSwitchDemo">
+        <h2>1. Click Events Demo</h2>
+        <div class="demo-container">
+          <div class="demo-explanation">
+            <p>
+              Click the switch to toggle the light! This demonstrates basic
+              click event handling.
+            </p>
+
+            <div class="code-example">
+              <h4>HTML Code:</h4>
+              <pre><code class="language-html">
+<div class="light-container">
+    <div class="light" id="light"></div>
+    <button class="switch" id="lightSwitch">
+        Toggle Light
+    </button>
+</div></code></pre>
+
+              <h4>JavaScript Code:</h4>
+              <pre><code class="language-javascript">
+const lightSwitch = document.getElementById('lightSwitch');
+const light = document.getElementById('light');
+
+lightSwitch.addEventListener('click', () => {
+    light.classList.toggle('on');
+});</code></pre>
+            </div>
+
+            <div class="real-world-examples">
+              <h4>Real World Examples:</h4>
+              <div class="example-card">
+                <h5>1. Netflix's Play/Pause Button</h5>
+                <p>
+                  Uses click events to control video playback, toggle overlay
+                  menus, and update UI state.
+                </p>
+                <code>button.addEventListener('click', togglePlayPause);</code>
+              </div>
+              <div class="example-card">
+                <h5>2. Instagram's Like Button</h5>
+                <p>
+                  Double-click events on posts and single-click on the heart
+                  icon to like content.
+                </p>
+                <code>post.addEventListener('dblclick', handleLike);</code>
+              </div>
+              <div class="example-card">
+                <h5>3. Google Drive's Folder Navigation</h5>
+                <p>
+                  Click events to open folders and navigate through the file
+                  structure.
+                </p>
+                <code>folder.addEventListener('click', navigateToFolder);</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="light-container">
+            <div class="light" id="light"></div>
+            <button class="switch" id="lightSwitch">Toggle Light</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Events Demo -->
+      <section class="demo-section" id="keyEventsDemo">
+        <h2>2. Keyboard Events</h2>
+        <div class="demo-container">
+          <div class="demo-explanation">
+            <p>Type in the box below to see keyboard events in action!</p>
+
+            <div class="code-example">
+              <h4>HTML Code:</h4>
+              <pre><code class="language-html">
+<input type="text" id="keyInput" 
+    placeholder="Type something...">
+<div id="keyDisplay">
+    Last Key Pressed: None
+</div></code></pre>
+
+              <h4>JavaScript Code:</h4>
+              <pre><code class="language-javascript">
+keyInput.addEventListener('keydown', (event) => {
+    keyDisplay.textContent = 
+        `Last Key Pressed: ${event.key} 
+        (Key Code: ${event.keyCode})`;
+});</code></pre>
+            </div>
+
+            <div class="real-world-examples">
+              <h4>Real World Examples:</h4>
+              <div class="example-card">
+                <h5>1. VS Code's Shortcuts</h5>
+                <p>
+                  Uses keydown events to detect keyboard shortcuts for actions
+                  like save, find, replace.
+                </p>
+                <code
+                  >document.addEventListener('keydown', handleShortcut);</code
+                >
+              </div>
+              <div class="example-card">
+                <h5>2. Google Docs' Real-time Editing</h5>
+                <p>
+                  Keyboard events for typing, formatting shortcuts, and
+                  navigation.
+                </p>
+                <code>editor.addEventListener('keypress', handleTyping);</code>
+              </div>
+              <div class="example-card">
+                <h5>3. Spotify's Playback Controls</h5>
+                <p>
+                  Space for play/pause, arrow keys for navigation in playlists.
+                </p>
+                <code>window.addEventListener('keyup', handleMediaKeys);</code>
+              </div>
+              <div class="example-card">
+                <h5>4. Media Key Controls</h5>
+                <p>
+                  Global media key handling for play/pause, next/previous track
+                  across the system.
+                </p>
+                <pre><code class="language-javascript">
+window.addEventListener('keyup', (e) => {
+    switch(e.key) {
+        case 'MediaPlayPause':
+            togglePlayPause();
+            break;
+        case 'MediaTrackNext':
+            playNextTrack();
+            break;
+        case 'MediaTrackPrevious':
+            playPreviousTrack();
+            break;
+        case 'MediaStop':
+            stopPlayback();
+            break;
+    }
+});</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-interactive">
+            <input type="text" id="keyInput" placeholder="Type something..." />
+            <div id="keyDisplay">Last Key Pressed: None</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mouse Events Demo -->
+      <section class="demo-section" id="mouseEventsDemo">
+        <h2>3. Mouse Events</h2>
+        <div class="demo-container">
+          <div class="demo-explanation">
+            <p>Move your mouse over the box to see different mouse events!</p>
+
+            <div class="code-example">
+              <h4>HTML Code:</h4>
+              <pre><code class="language-html">
+<div id="mouseBox">
+    <p>Mouse Position: 
+        <span id="mousePosition">
+            Move mouse here
+        </span>
+    </p>
+</div></code></pre>
+
+              <h4>JavaScript Code:</h4>
+              <pre><code class="language-javascript">
+mouseBox.addEventListener('mousemove', (event) => {
+    const rect = mouseBox.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    mousePosition.textContent = `X: ${x}px, Y: ${y}px`;
+});</code></pre>
+            </div>
+
+            <div class="real-world-examples">
+              <h4>Real World Examples:</h4>
+              <div class="example-card">
+                <h5>1. Figma's Design Tools</h5>
+                <p>
+                  Mouse events for drawing, selecting, and manipulating design
+                  elements.
+                </p>
+                <code
+                  >canvas.addEventListener('mousemove', handleDrawing);</code
+                >
+              </div>
+              <div class="example-card">
+                <h5>2. Trello's Card Dragging</h5>
+                <p>
+                  Mouse events for drag-and-drop functionality between lists.
+                </p>
+                <code>card.addEventListener('mousedown', startDragging);</code>
+              </div>
+              <div class="example-card">
+                <h5>3. Google Maps' Pan</h5>
+                <p>Mouse events for panning and zooming the map view.</p>
+                <code>map.addEventListener('mousedown', startPanning);</code>
+              </div>
+            </div>
+          </div>
+
+          <div id="mouseBox">
+            <p>
+              Mouse Position: <span id="mousePosition">Move mouse here</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Event Bubbling Demo -->
+      <section class="demo-section" id="bubblingDemo">
+        <h2>4. Event Bubbling</h2>
+        <div class="demo-container">
+          <div class="demo-explanation">
+            <p>Click the nested boxes to see event bubbling in action!</p>
+
+            <div class="code-example">
+              <h4>HTML Code:</h4>
+              <pre><code class="language-html">
+<div class="bubble-container" id="grandparent">
+    Grandparent
+    <div class="bubble-container" id="parent">
+        Parent
+        <div class="bubble-container" id="child">
+            Child
+        </div>
+    </div>
+</div></code></pre>
+
+              <h4>JavaScript Code:</h4>
+              <pre><code class="language-javascript">
+['child', 'parent', 'grandparent'].forEach(id => {
+    document.getElementById(id)
+        .addEventListener('click', (event) => {
+            console.log(`${id} clicked!`);
+            // event.stopPropagation(); // Stop bubbling
+    });
+});</code></pre>
+            </div>
+
+            <div class="real-world-examples">
+              <h4>Real World Examples:</h4>
+              <div class="example-card">
+                <h5>1. YouTube's Video Player</h5>
+                <p>
+                  Nested controls for video, volume, and settings using event
+                  bubbling.
+                </p>
+                <code>player.addEventListener('click', handleControls);</code>
+              </div>
+              <div class="example-card">
+                <h5>2. Facebook's News Feed</h5>
+                <p>
+                  Event delegation for handling clicks on posts, likes, and
+                  comments.
+                </p>
+                <code>feed.addEventListener('click', handleInteractions);</code>
+              </div>
+              <div class="example-card">
+                <h5>3. Gmail's Inbox</h5>
+                <p>
+                  Event bubbling for handling email selection, stars, and
+                  actions.
+                </p>
+                <code
+                  >inbox.addEventListener('click', handleEmailActions);</code
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="bubble-demo">
+            <div class="bubble-container" id="grandparent">
+              Grandparent
+              <div class="bubble-container" id="parent">
+                Parent
+                <div class="bubble-container" id="child">Child</div>
+              </div>
+            </div>
+            <div id="bubbleLog">Event Log:</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Form Events Demo -->
+      <section class="demo-section" id="formDemo">
+        <h2>5. Form Events</h2>
+        <div class="demo-container">
+          <div class="demo-explanation">
+            <p>Try submitting the form to see form events!</p>
+
+            <div class="code-example">
+              <h4>HTML Code:</h4>
+              <pre><code class="language-html">
+<form id="demoForm">
+    <input type="text" id="formInput" 
+        placeholder="Enter your name" required>
+    <button type="submit">Submit</button>
+</form>
+<div id="formResult"></div></code></pre>
+
+              <h4>JavaScript Code:</h4>
+              <pre><code class="language-javascript">
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = formInput.value;
+    formResult.textContent = 
+        `Form submitted! Hello, ${name}!`;
+});</code></pre>
+            </div>
+
+            <div class="real-world-examples">
+              <h4>Real World Examples:</h4>
+              <div class="example-card">
+                <h5>1. Amazon's Checkout</h5>
+                <p>Form validation and submission for payment processing.</p>
+                <code
+                  >checkoutForm.addEventListener('submit',
+                  processPayment);</code
+                >
+              </div>
+              <div class="example-card">
+                <h5>2. LinkedIn's Profile Editor</h5>
+                <p>Real-time validation and auto-saving of profile changes.</p>
+                <code>profileForm.addEventListener('input', autoSave);</code>
+              </div>
+              <div class="example-card">
+                <h5>3. Dropbox's Upload</h5>
+                <p>Form events for file uploads with progress tracking.</p>
+                <code
+                  >uploadForm.addEventListener('change',
+                  handleFileUpload);</code
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="form-demo">
+            <form id="demoForm">
+              <input
+                type="text"
+                id="formInput"
+                placeholder="Enter your name"
+                required
+              />
+              <button type="submit">Submit</button>
+            </form>
+            <div id="formResult"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Real World Implementation Examples -->
+      <section class="demo-section" id="realWorldExamples">
+        <h2>🌟 Real-World Implementation Examples</h2>
+        <div class="implementation-grid">
+          <div class="implementation-card">
+            <h3>Spotify's Player Controls</h3>
+            <div class="code-example">
+              <h4>HTML Structure:</h4>
+              <pre><code class="language-html">
+<!-- Audio Player Component -->
+<div class="spotify-player">
+    <audio id="audioElement"></audio>
+    
+    <div class="player-display">
+        <img id="currentTrackImage" src="album-cover.jpg" alt="Album Cover">
+        <div class="track-info">
+            <h3 id="currentTrackTitle">Track Title</h3>
+            <p id="currentTrackArtist">Artist Name</p>
+        </div>
+    </div>
+    
+    <div class="player-controls">
+        <button id="previousButton" aria-label="Previous Track">
+            <i class="icon-previous"></i>
+        </button>
+        <button id="playButton" aria-label="Play">
+            <i class="icon-play"></i>
+        </button>
+        <button id="nextButton" aria-label="Next Track">
+            <i class="icon-next"></i>
+        </button>
+    </div>
+    
+    <div class="progress-container">
+        <span id="currentTime">0:00</span>
+        <div id="progressBar" class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <span id="totalTime">0:00</span>
+    </div>
+</div></code></pre>
+
+              <h4>JavaScript Implementation:</h4>
+              <pre><code class="language-javascript">
+class AudioPlayer {
+    constructor() {
+        this.audio = new Audio();
+        this.playlist = new DoublyLinkedList(); // For prev/next
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') this.togglePlay();
+            if (e.code === 'ArrowLeft') this.previous();
+            if (e.code === 'ArrowRight') this.next();
+        });
+
+        // Progress bar click
+        this.progressBar.addEventListener('click', (e) => {
+            const clickPosition = 
+                (e.clientX - this.progressBar.offsetLeft) / 
+                this.progressBar.offsetWidth;
+            this.audio.currentTime = 
+                clickPosition * this.audio.duration;
+        });
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="implementation-card">
+            <h3>Google Docs' Real-time Collaboration</h3>
+            <div class="code-example">
+              <h4>HTML Structure:</h4>
+              <pre><code class="language-html">
+<!-- Document Editor -->
+<div class="document-editor">
+    <div class="toolbar">
+        <button id="boldButton" class="format-button" title="Bold (Ctrl+B)">
+            <i class="icon-bold"></i>
+        </button>
+        <button id="italicButton" class="format-button" title="Italic (Ctrl+I)">
+            <i class="icon-italic"></i>
+        </button>
+        <button id="underlineButton" class="format-button" title="Underline (Ctrl+U)">
+            <i class="icon-underline"></i>
+        </button>
+        <select id="fontSelector">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+        </select>
+    </div>
+    
+    <div id="editor" class="editor-content" contenteditable="true">
+        <p>Start typing your document here...</p>
+    </div>
+    
+    <div class="collaboration-status">
+        <div id="userIndicators" class="user-indicators">
+            <!-- User indicators will appear here -->
+        </div>
+        <div id="saveStatus" class="save-status">All changes saved</div>
+    </div>
+</div></code></pre>
+
+              <h4>JavaScript Implementation:</h4>
+              <pre><code class="language-javascript">
+class DocumentEditor {
+    constructor() {
+        this.content = new Array(); // Store text chunks
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        this.editor.addEventListener('input', (e) => {
+            const change = {
+                type: e.inputType,
+                data: e.data,
+                position: this.getCursorPosition()
+            };
+            this.broadcastChange(change);
+        });
+
+        this.editor.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'z') {
+                e.preventDefault();
+                this.undo();
+            }
+        });
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="implementation-card">
+            <h3>Trello's Drag and Drop</h3>
+            <div class="code-example">
+              <h4>HTML Structure:</h4>
+              <pre><code class="language-html">
+<!-- Kanban Board -->
+<div class="kanban-board">
+    <div class="list-container">
+        <div class="list">
+            <div class="list-header">
+                <h3>To Do</h3>
+            </div>
+            <div class="list-cards" data-list-id="todo">
+                <div class="card" draggable="true" data-card-id="card1">
+                    <div class="card-content">
+                        <p>Implement login functionality</p>
+                    </div>
+                </div>
+                <div class="card" draggable="true" data-card-id="card2">
+                    <div class="card-content">
+                        <p>Design homepage layout</p>
+                    </div>
+                </div>
+            </div>
+            <button class="add-card-btn">+ Add a card</button>
+        </div>
+        
+        <div class="list">
+            <div class="list-header">
+                <h3>In Progress</h3>
+            </div>
+            <div class="list-cards" data-list-id="inprogress">
+                <div class="card" draggable="true" data-card-id="card3">
+                    <div class="card-content">
+                        <p>Set up database schema</p>
+                    </div>
+                </div>
+            </div>
+            <button class="add-card-btn">+ Add a card</button>
+        </div>
+        
+        <div class="list">
+            <div class="list-header">
+                <h3>Done</h3>
+            </div>
+            <div class="list-cards" data-list-id="done">
+                <div class="card" draggable="true" data-card-id="card4">
+                    <div class="card-content">
+                        <p>Project setup</p>
+                    </div>
+                </div>
+            </div>
+            <button class="add-card-btn">+ Add a card</button>
+        </div>
+    </div>
+</div></code></pre>
+
+              <h4>JavaScript Implementation:</h4>
+              <pre><code class="language-javascript">
+class DragDropManager {
+    constructor() {
+        this.draggingElement = null;
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        document.addEventListener('mousedown', (e) => {
+            if (e.target.matches('.card')) {
+                this.draggingElement = e.target;
+                this.draggingElement.classList.add('dragging');
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (this.draggingElement) {
+                this.updatePosition(e.clientX, e.clientY);
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (this.draggingElement) {
+                this.dropElement();
+            }
+        });
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="implementation-card">
+            <h3>VS Code's Multi-cursor Editor</h3>
+            <div class="code-example">
+              <h4>HTML Structure:</h4>
+              <pre><code class="language-html">
+<!-- Code Editor -->
+<div class="code-editor-container">
+    <div class="editor-sidebar">
+        <div class="file-explorer">
+            <h4>Explorer</h4>
+            <ul class="file-tree">
+                <li class="folder">
+                    <span class="folder-name">src</span>
+                    <ul>
+                        <li class="file">index.js</li>
+                        <li class="file">app.js</li>
+                        <li class="file">styles.css</li>
+                    </ul>
+                </li>
+                <li class="folder">
+                    <span class="folder-name">public</span>
+                    <ul>
+                        <li class="file">index.html</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="editor-main">
+        <div class="editor-tabs">
+            <div class="tab active">index.js</div>
+            <div class="tab">app.js</div>
+        </div>
+        
+        <div id="codeEditor" class="code-editor" contenteditable="true">
+            <div class="line-numbers">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+            </div>
+            <pre class="code-content">
+function helloWorld() {
+    console.log("Hello, World!");
+}
+            </pre>
+        </div>
+    </div>
+</div></code></pre>
+
+              <h4>JavaScript Implementation:</h4>
+              <pre><code class="language-javascript">
+class Editor {
+    constructor() {
+        this.cursors = new Set();
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        // Multi-cursor selection with Alt+Click
+        this.editor.addEventListener('mousedown', (e) => {
+            if (e.altKey) {
+                this.addCursor(e.clientX, e.clientY);
+            } else {
+                this.clearCursors();
+                this.addCursor(e.clientX, e.clientY);
+            }
+        });
+
+        // Keyboard handling for all cursors
+        document.addEventListener('keydown', (e) => {
+            this.cursors.forEach(cursor => {
+                this.handleInput(cursor, e);
+            });
+        });
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="implementation-card">
+            <h3>E-commerce Shopping Cart</h3>
+            <div class="code-example">
+              <h4>HTML Structure:</h4>
+              <pre><code class="language-html">
+<!-- Shopping Cart -->
+<div class="shopping-cart">
+    <div class="cart-header">
+        <h3>Your Shopping Cart</h3>
+        <span class="item-count">3 items</span>
+    </div>
+    
+    <div class="cart-items">
+        <div class="cart-item" data-product-id="123">
+            <img src="product1.jpg" alt="Product 1" class="item-image">
+            <div class="item-details">
+                <h4>Wireless Headphones</h4>
+                <p class="item-price">$99.99</p>
+            </div>
+            <div class="item-quantity">
+                <button class="quantity-btn decrease">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="remove-item-btn">Remove</button>
+        </div>
+        
+        <div class="cart-item" data-product-id="456">
+            <img src="product2.jpg" alt="Product 2" class="item-image">
+            <div class="item-details">
+                <h4>Smartphone Case</h4>
+                <p class="item-price">$24.99</p>
+            </div>
+            <div class="item-quantity">
+                <button class="quantity-btn decrease">-</button>
+                <input type="number" value="2" min="1" class="quantity-input">
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="remove-item-btn">Remove</button>
+        </div>
+    </div>
+    
+    <div class="cart-summary">
+        <div class="summary-row">
+            <span>Subtotal:</span>
+            <span>$149.97</span>
+        </div>
+        <div class="summary-row">
+            <span>Shipping:</span>
+            <span>$5.99</span>
+        </div>
+        <div class="summary-row total">
+            <span>Total:</span>
+            <span>$155.96</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+</div></code></pre>
+
+              <h4>JavaScript Implementation:</h4>
+              <pre><code class="language-javascript">
+class ShoppingCart {
+    constructor() {
+        this.items = [];
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        // Quantity buttons
+        document.querySelectorAll('.quantity-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const item = e.target.closest('.cart-item');
+                const productId = item.dataset.productId;
+                const input = item.querySelector('.quantity-input');
+                
+                if (e.target.classList.contains('increase')) {
+                    input.value = parseInt(input.value) + 1;
+                } else if (e.target.classList.contains('decrease')) {
+                    if (parseInt(input.value) > 1) {
+                        input.value = parseInt(input.value) - 1;
+                    }
+                }
+                
+                this.updateItemQuantity(productId, parseInt(input.value));
+            });
+        });
+
+        // Remove buttons
+        document.querySelectorAll('.remove-item-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const item = e.target.closest('.cart-item');
+                const productId = item.dataset.productId;
+                this.removeItem(productId);
+                item.remove();
+                this.updateCartSummary();
+            });
+        });
+
+        // Checkout button
+        document.querySelector('.checkout-btn').addEventListener('click', () => {
+            this.proceedToCheckout();
+        });
+    }
+
+    updateItemQuantity(productId, quantity) {
+        // Update item quantity in the cart
+        const itemIndex = this.items.findIndex(item => item.id === productId);
+        if (itemIndex !== -1) {
+            this.items[itemIndex].quantity = quantity;
+            this.updateCartSummary();
+        }
+    }
+
+    removeItem(productId) {
+        // Remove item from the cart
+        this.items = this.items.filter(item => item.id !== productId);
+    }
+
+    updateCartSummary() {
+        // Recalculate and update cart totals
+        const subtotal = this.items.reduce((total, item) => {
+            return total + (item.price * item.quantity);
+        }, 0);
+        
+        const shipping = subtotal > 0 ? 5.99 : 0;
+        const total = subtotal + shipping;
+        
+        // Update the DOM
+        document.querySelector('.item-count').textContent = 
+            `${this.getTotalItems()} items`;
+        document.querySelector('.summary-row:nth-child(1) span:last-child').textContent = 
+            `$${subtotal.toFixed(2)}`;
+        document.querySelector('.summary-row:nth-child(2) span:last-child').textContent = 
+            `$${shipping.toFixed(2)}`;
+        document.querySelector('.total span:last-child').textContent = 
+            `$${total.toFixed(2)}`;
+    }
+
+    getTotalItems() {
+        return this.items.reduce((count, item) => count + item.quantity, 0);
+    }
+
+    proceedToCheckout() {
+        // Handle checkout process
+        window.location.href = '/checkout';
+    }
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Created to demonstrate JavaScript Event Handling</p>
+      <p>Explore the code and learn by example! 🚀</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

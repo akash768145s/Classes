@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Positioning Demo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="fixed-nav">
+      <p>Fixed Position Nav Bar - Always stays at the top</p>
+    </nav>
+
+    <div class="container">
+      <h1>Understanding CSS Positioning</h1>
+
+      <!-- Static Positioning (Default) -->
+      <section class="position-demo">
+        <h2>Static Positioning (Default)</h2>
+        <div class="static-container demo-box">
+          <div class="static-box">
+            <p>Static (Default)</p>
+            <span>position: static</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Relative Positioning -->
+      <section class="position-demo">
+        <h2>Relative Positioning</h2>
+        <div class="controls">
+          <div class="control-group">
+            <label>Top: <span class="top-value">30</span>px</label>
+            <input type="range" class="relative-control" data-property="top" min="-50" max="100" value="30">
+          </div>
+          <div class="control-group">
+            <label>Left: <span class="left-value">50</span>px</label>
+            <input type="range" class="relative-control" data-property="left" min="-50" max="100" value="50">
+          </div>
+        </div>
+        <div class="relative-container demo-box">
+          <div class="box reference-box">
+            Original Position
+            <span>This shows where the element would normally be</span>
+          </div>
+          <div class="relative-box">
+            <p>Relative Position</p>
+            <span class="position-value">position: relative;</span>
+            <span class="top-value">top: 30px;</span>
+            <span class="left-value">left: 50px;</span>
+            <span>(Moved from original position)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Absolute Positioning -->
+      <section class="position-demo">
+        <h2>Absolute Positioning</h2>
+        <div class="controls">
+          <div class="control-group">
+            <label>Top: <span class="abs-top-value">50</span>px</label>
+            <input type="range" class="absolute-control" data-property="top" min="0" max="250" value="50">
+          </div>
+          <div class="control-group">
+            <label>Right: <span class="abs-right-value">30</span>px</label>
+            <input type="range" class="absolute-control" data-property="right" min="0" max="100" value="30">
+          </div>
+        </div>
+        <div class="absolute-container demo-box">
+          <div class="parent-box">
+            <div class="absolute-box">
+              <p>Absolute Position</p>
+              <span class="position-value">position: absolute;</span>
+              <span class="top-value">top: 50px;</span>
+              <span class="right-value">right: 30px;</span>
+            </div>
+          </div>
+          <p class="positioning-note">
+            ⚡ Absolute positioning is relative to the nearest positioned ancestor.
+            Try moving the box using the controls above!
+          </p>
+        </div>
+      </section>
+
+      <!-- Fixed Positioning -->
+      <section class="position-demo">
+        <h2>Fixed Positioning</h2>
+        <div class="fixed-container demo-box">
+          <p>Scroll down to see the fixed elements:</p>
+          <ul>
+            <li>Navigation bar at the top</li>
+            <li>Chat button at bottom right</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Sticky Positioning -->
+      <section class="position-demo">
+        <h2>Sticky Positioning</h2>
+        <div class="sticky-container demo-box">
+          <div class="sticky-header">
+            <p>Sticky Header</p>
+            <span>position: sticky; top: 60px</span>
+          </div>
+          <div class="content">
+            <p>Scroll this section to see the sticky header in action!</p>
+            <div class="scroll-content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>
+                Sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua.
+              </p>
+              <p>
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris.
+              </p>
+              <p>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse.
+              </p>
+              <p>Excepteur sint occaecat cupidatat non proident.</p>
+              <p>
+                Sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Fixed Chat Button -->
+    <button class="fixed-chat">
+      Chat
+    </button>
+
+    <script>
+      // Relative positioning controls
+      const relativeBox = document.querySelector('.relative-box');
+      const relativeControls = document.querySelectorAll('.relative-control');
+      const relativeTopValue = document.querySelector('.relative-box .top-value');
+      const relativeLeftValue = document.querySelector('.relative-box .left-value');
+
+      relativeControls.forEach(control => {
+        control.addEventListener('input', (e) => {
+          const property = e.target.dataset.property;
+          const value = e.target.value;
+          relativeBox.style[property] = `${value}px`;
+          
+          if (property === 'top') {
+            relativeTopValue.textContent = `top: ${value}px;`;
+            document.querySelector('.controls .top-value').textContent = value;
+          } else {
+            relativeLeftValue.textContent = `left: ${value}px;`;
+            document.querySelector('.controls .left-value').textContent = value;
+          }
+
+          // Update ghost element position
+          const ghost = relativeBox.querySelector('.ghost-position');
+          if (ghost) {
+            ghost.style.transform = `translate(${-value}px, ${-value}px)`;
+          }
+        });
+      });
+
+      // Absolute positioning controls
+      const absoluteBox = document.querySelector('.absolute-box');
+      const absoluteControls = document.querySelectorAll('.absolute-control');
+      const absoluteTopValue = document.querySelector('.absolute-box .top-value');
+      const absoluteRightValue = document.querySelector('.absolute-box .right-value');
+
+      absoluteControls.forEach(control => {
+        control.addEventListener('input', (e) => {
+          const property = e.target.dataset.property;
+          const value = e.target.value;
+          absoluteBox.style[property] = `${value}px`;
+          
+          if (property === 'top') {
+            absoluteTopValue.textContent = `top: ${value}px;`;
+            document.querySelector('.controls .abs-top-value').textContent = value;
+          } else {
+            absoluteRightValue.textContent = `right: ${value}px;`;
+            document.querySelector('.controls .abs-right-value').textContent = value;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

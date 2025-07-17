@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Class vs ID Demo</title>
+
+    <style>
+      /* 1️⃣  A CLASS – reusable, lower specificity */
+      .card {
+        background: #e0f2fe; /* light‑blue background */
+        border: 2px solid #38bdf8; /* blue border */
+        padding: 16px;
+        margin-bottom: 12px;
+        font-family: Arial, sans-serif;
+      }
+
+      /* 2️⃣  An ID – unique, higher specificity */
+      #special {
+        background: #fef9c3; /* overrides class background */
+        border-color: #facc15; /* overrides class border */
+        font-weight: bold; /* extra style only for this card */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>.class styles every “card”</h2>
+
+    <div class="card">Card 1 (class only)</div>
+    <div class="card">Card 2 (class only)</div>
+
+    <h2>#id overrides the class on one unique element</h2>
+
+    <!-- Same class, PLUS a unique ID -->
+    <div class="card" id="special">
+      Card 3 (class + ID) – notice background and border are different!
+    </div>
+  </body>
+</html>

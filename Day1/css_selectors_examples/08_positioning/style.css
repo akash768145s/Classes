@@ -1,0 +1,399 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding-top: 60px;
+    /* Space for fixed nav */
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1,
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Demo Containers */
+.position-demo {
+    margin-bottom: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.demo-box {
+    background-color: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    padding: 20px;
+    margin: 20px 0;
+    min-height: 200px;
+    position: relative;
+}
+
+/* Fixed Navigation */
+.fixed-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2196f3;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Static Positioning */
+.static-box {
+    background-color: #e3f2fd;
+    padding: 20px;
+    border: 2px solid #2196f3;
+    width: 200px;
+}
+
+/* Relative Positioning */
+.relative-container {
+    background-color: #f3e5f5;
+    padding: 40px;
+    border: 2px dashed #9c27b0;
+}
+
+.reference-box {
+    background-color: #e1bee7;
+    padding: 20px;
+    width: 200px;
+    margin-bottom: 40px;
+    border: 2px solid #9c27b0;
+}
+
+.relative-box {
+    position: relative;
+    top: 30px;
+    left: 50px;
+    background-color: #9c27b0;
+    color: white;
+    padding: 20px;
+    width: 200px;
+    border: 2px solid #4a148c;
+    z-index: 1;
+}
+
+.relative-box::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -50px;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(156, 39, 176, 0.2);
+    border: 2px dashed #9c27b0;
+    z-index: -1;
+}
+
+/* Absolute Positioning */
+.parent-box {
+    position: relative;
+    background-color: #fff3e0;
+    border: 2px solid #ff9800;
+    padding: 40px;
+    height: 300px;
+    margin: 20px;
+}
+
+.absolute-box {
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    background-color: #ff9800;
+    color: white;
+    padding: 20px;
+    width: 200px;
+    border: 2px solid #f57c00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.parent-box::before {
+    content: 'Parent Container (position: relative)';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    border-radius: 4px;
+}
+
+.absolute-box::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 2px;
+    height: 20px;
+    background-color: #ff9800;
+}
+
+.absolute-box::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    width: 30px;
+    height: 2px;
+    background-color: #ff9800;
+}
+
+/* Add visual guides */
+.relative-box::after {
+    content: 'Moved 30px down, 50px right';
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    font-size: 0.8em;
+    color: #666;
+    white-space: nowrap;
+}
+
+.absolute-box span:last-child::after {
+    content: '(relative to parent)';
+    margin-left: 5px;
+    color: #fff3e0;
+}
+
+/* Fixed Chat Button */
+.fixed-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.fixed-chat:hover {
+    transform: translateY(-2px);
+}
+
+/* Sticky Positioning */
+.sticky-container {
+    background-color: #e8f5e9;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 60px;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    z-index: 100;
+}
+
+.scroll-content {
+    padding: 20px;
+}
+
+.scroll-content p {
+    margin-bottom: 20px;
+}
+
+/* Info spans */
+span {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Interactive Hover Effects */
+.demo-box>div:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .demo-box {
+        padding: 10px;
+    }
+
+    .static-box,
+    .relative-box,
+    .absolute-box {
+        width: 150px;
+    }
+}
+
+/* Additional Styles for Positioning Demo */
+.positioning-note {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff3e0;
+    border-left: 4px solid #ff9800;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.reference-box span {
+    color: #6a1b9a;
+    font-style: italic;
+}
+
+.relative-container,
+.absolute-container {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Improve visibility of position changes */
+.relative-box,
+.absolute-box {
+    transition: all 0.3s ease;
+}
+
+.relative-box:hover,
+.absolute-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Position Controls */
+.controls {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+}
+
+.control-group {
+    margin-bottom: 10px;
+}
+
+.control-group:last-child {
+    margin-bottom: 0;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #495057;
+    font-size: 0.9em;
+}
+
+input[type="range"] {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
+}
+
+/* Improve the range input styling */
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #2196f3;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #1976d2;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #2196f3;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    background: #1976d2;
+}
+
+/* Update box transitions for smoother movement */
+.relative-box,
+.absolute-box {
+    transition: all 0.2s ease-out;
+}
+
+/* Add position indicators */
+.position-value {
+    font-weight: bold;
+    color: #2196f3;
+}
+
+.top-value,
+.left-value,
+.right-value {
+    font-family: monospace;
+    background: rgba(33, 150, 243, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Enhance container styles */
+.relative-container,
+.absolute-container {
+    transition: background-color 0.3s ease;
+}
+
+.relative-container:hover,
+.absolute-container:hover {
+    background-color: #f8f9fa;
+}
+
+/* Add grid lines to parent box */
+.parent-box {
+    background-image: linear-gradient(rgba(255, 152, 0, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 152, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Update positioning note */
+.positioning-note {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 0.9em;
+    line-height: 1.5;
+    border-radius: 0 4px 4px 0;
+}

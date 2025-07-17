@@ -1,0 +1,39 @@
+/* Direct child selector for paragraphs */
+.parent>p {
+    color: red;
+    border: 2px solid red;
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Direct child selector for spans */
+.parent>span {
+    color: blue;
+    border: 2px solid blue;
+    display: block;
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Child selector with nested elements */
+.parent>.nested {
+    border: 2px dashed purple;
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Regular descendant selector for comparison */
+.nested p {
+    color: green;
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Another parent's children */
+.another-parent>p {
+    color: orange;
+    border: 2px solid orange;
+    padding: 10px;
+    margin: 5px;
+}

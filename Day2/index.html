@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Tutorial - Step by Step</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 15px;
+      }
+      .step {
+        margin: 30px 0;
+        padding: 25px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-left: 6px solid #3498db;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+      .step:hover {
+        transform: translateY(-2px);
+      }
+      .step h2 {
+        color: #2c3e50;
+        margin-top: 0;
+        font-size: 1.8em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .step h2:before {
+        content: "⚡";
+        font-size: 1.2em;
+      }
+      .step p {
+        color: #34495e;
+        font-size: 1.1em;
+        margin: 15px 0;
+      }
+      .code-block {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #f8f8f2;
+        padding: 25px;
+        border-radius: 15px;
+        margin: 20px 0;
+        font-family: "Fira Code", "Courier New", monospace;
+        font-size: 14px;
+        overflow-x: auto;
+        border: 1px solid #3498db;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+        line-height: 1.6;
+        white-space: pre;
+      }
+      .code-block:before {
+        content: "JavaScript";
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: #3498db;
+        font-size: 12px;
+        font-weight: bold;
+        background: rgba(26, 26, 46, 0.9);
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+      .code-example {
+        margin: 20px 0;
+        background: #f8f9fa;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid #dee2e6;
+      }
+      .code-title {
+        background: #3498db;
+        color: white;
+        padding: 12px 20px;
+        font-weight: bold;
+        font-size: 1.1em;
+      }
+      .code-content {
+        padding: 20px;
+      }
+      .code-line {
+        font-family: "Fira Code", monospace;
+        padding: 4px 0;
+      }
+      .code-comment {
+        color: #6c757d;
+        font-style: italic;
+      }
+      .code-keyword {
+        color: #007bff;
+        font-weight: bold;
+      }
+      .code-string {
+        color: #28a745;
+      }
+      .code-number {
+        color: #dc3545;
+      }
+      .code-operator {
+        color: #6f42c1;
+      }
+      .parameter-flow {
+        background: #2c3e50;
+        color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 15px 0;
+        font-family: "Fira Code", monospace;
+      }
+      .flow-step {
+        background: rgba(52, 152, 219, 0.1);
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 6px;
+        border-left: 4px solid #3498db;
+      }
+      .flow-arrow {
+        color: #3498db;
+        margin: 0 8px;
+        font-weight: bold;
+      }
+      .flow-result {
+        background: rgba(46, 204, 113, 0.1);
+        border-left: 4px solid #2ecc71;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Complete JavaScript Tutorial - Step by Step</h1>
+
+      <div class="step">
+        <h2>Step 1: Variables and Data Types</h2>
+        <div class="code-example">
+          <div class="code-title">Variables and Data Types</div>
+          <div class="code-block">// String data type
+let name = 'John';
+
+// Number data type
+const age = 25;
+
+// Boolean data type
+let isStudent = true;
+
+// Null data type
+let hobbies = null;
+
+// Undefined data type
+let city;</div>
+        </div>
+        <div class="interactive-inputs">
+          <div class="input-group">
+            <label>Name (String):</label>
+            <input type="text" id="varName" value="John" />
+          </div>
+          <div class="input-group">
+            <label>Age (Number):</label>
+            <input type="number" id="varAge" value="25" />
+          </div>
+          <div class="input-group">
+            <label>Is Student (Boolean):</label>
+            <input type="checkbox" id="varIsStudent" />
+          </div>
+          <button class="test-button" onclick="testVariables()">
+            Test Variables
+          </button>
+          <div class="output-display" id="variablesOutput"></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>Step 2: Basic Operators</h2>
+        <div class="code-example">
+          <div class="code-title">Arithmetic Operators</div>
+          <div class="code-block">// Initialize variables
+let x = 10;
+let y = 5;
+
+// Addition
+let sum = x + y; // 15
+
+// Subtraction
+let difference = x - y; // 5
+
+// Multiplication
+let product = x * y; // 50
+
+// Division
+let quotient = x / y; // 2</div>
+        </div>
+
+        <div class="code-example">
+          <div class="code-title">Comparison Operators</div>
+          <div class="code-block">// Comparison operators
+let isEqual = x == y; // false
+let isGreater = x > y; // true
+let isLess = x < y; // false</div>
+        </div>
+        <div class="interactive-inputs">
+          <div class="input-group">
+            <label>First Number (x):</label>
+            <input type="number" id="opX" value="10" />
+          </div>
+          <div class="input-group">
+            <label>Second Number (y):</label>
+            <input type="number" id="opY" value="5" />
+          </div>
+          <button class="test-button" onclick="testOperators()">
+            Test Operators
+          </button>
+          <div class="output-display" id="operatorsOutput"></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>Step 3: Functions</h2>
+        <div class="code-example">
+          <div class="code-title">Function Declarations</div>
+          <div class="code-block">// Regular function
+function greetUser(userName, userAge) {
+    return `Hello ${userName}, you are ${userAge} years old!`;
+}
+
+// Arrow function
+const calculateArea = (length, width) => {
+    return length * width;
+}
+
+// Function without parameters
+function getCurrentTime() {
+    return new Date().toLocaleTimeString();
+}</div>
+        </div>
+
+        <div class="parameter-flow">
+          <div class="flow-step">
+            <div class="code-line">Input Parameters:</div>
+            <div class="code-line">
+              userName = <span class="code-string">"Alice"</span>
+            </div>
+            <div class="code-line">
+              userAge = <span class="code-number">25</span>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="code-line">Function Call:</div>
+            <div class="code-line">greetUser("Alice", 25)</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step flow-result">
+            <div class="code-line">Return Value:</div>
+            <div class="code-line">"Hello Alice, you are 25 years old!"</div>
+          </div>
+        </div>
+        <div class="interactive-inputs">
+          <div class="input-group">
+            <label>User Name:</label>
+            <input type="text" id="funcName" value="Alice" />
+          </div>
+          <div class="input-group">
+            <label>User Age:</label>
+            <input type="number" id="funcAge" value="28" />
+          </div>
+          <div class="input-group">
+            <label>Rectangle Length:</label>
+            <input type="number" id="rectLength" value="5" />
+          </div>
+          <div class="input-group">
+            <label>Rectangle Width:</label>
+            <input type="number" id="rectWidth" value="3" />
+          </div>
+          <button class="test-button" onclick="testFunctions()">
+            Test Functions
+          </button>
+          <div class="output-display" id="functionsOutput"></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>Step 4: Conditionals</h2>
+        <div class="code-example">
+          <div class="code-title">If-Else Statement</div>
+          <div class="code-block">// If-else statement
+function checkAge(age) {
+    if (age >= 18) {
+        return 'You are an adult';
+    } else if (age >= 13) {
+        return 'You are a teenager';
+    } else {
+        return 'You are a child';
+    }
+}</div>
+        </div>
+
+        <div class="code-example">
+          <div class="code-title">Switch Statement</div>
+          <div class="code-block">// Switch statement
+function getDayType(day) {
+    switch(day) {
+        case 'Monday':
+        case 'Tuesday':
+        case 'Wednesday':
+        case 'Thursday':
+        case 'Friday':
+            return 'Weekday';
+        case 'Saturday':
+        case 'Sunday':
+            return 'Weekend';
+        default:
+            return 'Invalid day';
+    }
+}</div>
+        </div>
+        <div class="interactive-inputs">
+          <div class="input-group">
+            <label>Check Age:</label>
+            <input type="number" id="checkAgeInput" value="15" />
+          </div>
+          <div class="input-group">
+            <label>Check Day:</label>
+            <select id="dayInput">
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+          </div>
+          <button class="test-button" onclick="testConditionals()">
+            Test Conditionals
+          </button>
+          <div class="output-display" id="conditionalsOutput"></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>Step 5: Loops</h2>
+        <div class="code-example">
+          <div class="code-title">For Loop Example</div>
+          <div class="code-block">// For loop - counts from 1 to 5
+function countToFive() {
+    let result = '';
+    for (let i = 1; i <= 5; i++) {
+        result += `Count: ${i} `;
+    }
+    return result;
+}</div>
+        </div>
+
+        <div class="code-example">
+          <div class="code-title">While Loop Example</div>
+          <div class="code-block">// While loop - doubles a number until it's over 100
+function doubleUntil100(num) {
+    let result = [];
+    while (num <= 100) {
+        result.push(num);
+        num = num * 2;
+    }
+    return result;
+}</div>
+        </div>
+        <div class="interactive-inputs">
+          <div class="input-group">
+            <label>Count up to:</label>
+            <input type="number" id="countInput" value="5" min="1" max="20" />
+          </div>
+          <div class="input-group">
+            <label>Start number:</label>
+            <input type="number" id="startNum" value="3" />
+          </div>
+          <button class="test-button" onclick="testLoops()">Test Loops</button>
+          <div class="output-display" id="loopsOutput"></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>Step 6: Arrays and Objects</h2>
+        <div class="code-example">
+          <div class="code-title">Array Example</div>
+          <div class="code-block">// Array declaration
+let fruits = [
+    'apple',
+    'banana',
+    'orange',
+    'grape'
+];
+
+// Array processing
+function processFruits(fruitArray) {
+    let result = `We have ${fruitArray.length} fruits: `;
+    fruitArray.forEach((fruit, index) => {
+        result += `${index + 1}. ${fruit} `;
+    });
+    return result;
+}</div>
+        </div>
+
+        <div class="code-example">
+          <div class="code-title">Object Example</div>
+          <div class="code-block">// Object declaration
+let person = {
+    name: 'Alice',
+    age: 30,
+    city: 'New York',
+    skills: [
+        'JavaScript',
+        'HTML',
+        'CSS'
+    ]
+};
+
+// Object processing
+function displayPersonInfo(personObj) {
+    return `
+        Name: ${personObj.name},
+        Age: ${personObj.age},
+        City: ${personObj.city},
+        Skills: ${personObj.skills.join(', ')}
+    `;
+}</div>
+        </div>
+        <div class="interactive-inputs">
+          <div class="input-group">
+            <label>Add Fruit:</label>
+            <input
+              type="text"
+              id="fruitInput"
+              placeholder="Enter a fruit name"
+            />
+            <button class="test-button" onclick="addFruit()">Add</button>
+          </div>
+          <div class="input-group">
+            <label>Current Fruits:</label>
+            <div class="output-display" id="fruitsOutput"></div>
+          </div>
+          <div class="input-group">
+            <label>Person Name:</label>
+            <input type="text" id="personName" value="Alice" />
+          </div>
+          <div class="input-group">
+            <label>Person Age:</label>
+            <input type="number" id="personAge" value="30" />
+          </div>
+          <div class="input-group">
+            <label>Person City:</label>
+            <input type="text" id="personCity" value="New York" />
+          </div>
+          <button class="test-button" onclick="testArraysObjects()">
+            Test Arrays & Objects
+          </button>
+          <div class="output-display" id="arrayObjectOutput"></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>Step 7: Complete Demo</h2>
+        <p>
+          <strong>Explanation:</strong> Here's a comprehensive example that uses
+          all the concepts above in a single application.
+        </p>
+        <div class="code-block">
+          // Complete application using all concepts function runCompleteDemo()
+          { // 1. Variables and Data Types let students = [ { name: 'John', age:
+          20, grade: 85 }, { name: 'Sarah', age: 19, grade: 92 }, { name:
+          'Mike', age: 21, grade: 78 }, { name: 'Emma', age: 20, grade: 88 } ];
+          // 2. Loops - process each student for (let i = 0; i <
+          students.length; i++) { let student = students[i]; // 3. Functions and
+          Basic Operators let letterGrade = calculateLetterGrade(student.grade);
+          let ageCategory = checkAge(student.age); // 4. Conditionals let status
+          = student.grade >= 80 ? "Passing" : "Needs Improvement"; // 5. Objects
+          and Arrays let studentReport = { name: student.name, age: student.age,
+          numericGrade: student.grade, letterGrade: letterGrade, ageCategory:
+          ageCategory, status: status }; results.push(studentReport); } return
+          results; } // Helper function using conditionals function
+          calculateLetterGrade(grade) { if (grade >= 90) return 'A'; else if
+          (grade >= 80) return 'B'; else if (grade >= 70) return 'C'; else if
+          (grade >= 60) return 'D'; else return 'F'; }
+        </div>
+      </div>
+
+      <div class="button-container">
+        <h2>🚀 Interactive Demo</h2>
+        <p style="color: #6c757d; margin-bottom: 25px">
+          Click the buttons below to see each concept in action!
+        </p>
+
+        <button onclick="showVariables()">📊 Show Variables</button>
+        <button onclick="showOperators()">🔢 Show Operators</button>
+        <button onclick="showFunctions()">⚙️ Show Functions</button>
+        <button onclick="showConditionals()">🔀 Show Conditionals</button>
+        <button onclick="showLoops()">🔄 Show Loops</button>
+        <button onclick="showArraysObjects()">📦 Show Arrays & Objects</button>
+        <button onclick="runFullDemo()">🎯 Run Complete Demo</button>
+        <button onclick="clearResults()">🗑️ Clear Results</button>
+      </div>
+
+      <div id="results"></div>
+    </div>
+
+    <script>
+      // Step 1: Variables and Data Types
+      let name = "John";
+      const age = 25;
+      let isStudent = true;
+      let hobbies = null;
+      let city;
+
+      // Step 2: Basic Operators
+      let x = 10;
+      let y = 5;
+      let sum = x + y;
+      let difference = x - y;
+      let product = x * y;
+      let quotient = x / y;
+      let isEqual = x == y;
+      let isGreater = x > y;
+
+      // Step 3: Functions
+      function greetUser(userName, userAge) {
+        return `Hello ${userName}, you are ${userAge} years old!`;
+      }
+
+      const calculateArea = (length, width) => {
+        return length * width;
+      };
+
+      function getCurrentTime() {
+        return new Date().toLocaleTimeString();
+      }
+
+      // Step 4: Conditionals
+      function checkAge(age) {
+        if (age >= 18) {
+          return "You are an adult";
+        } else if (age >= 13) {
+          return "You are a teenager";
+        } else {
+          return "You are a child";
+        }
+      }
+
+      function getDayType(day) {
+        switch (day) {
+          case "Monday":
+          case "Tuesday":
+          case "Wednesday":
+          case "Thursday":
+          case "Friday":
+            return "Weekday";
+          case "Saturday":
+          case "Sunday":
+            return "Weekend";
+          default:
+            return "Invalid day";
+        }
+      }
+
+      // Step 5: Loops
+      function countToFive() {
+        let result = "";
+        for (let i = 1; i <= 5; i++) {
+          result += `Count: ${i} `;
+        }
+        return result;
+      }
+
+      function doubleUntil100(num) {
+        let result = [];
+        while (num <= 100) {
+          result.push(num);
+          num = num * 2;
+        }
+        return result;
+      }
+
+      // Step 6: Arrays and Objects
+      let fruits = ["apple", "banana", "orange", "grape"];
+      let person = {
+        name: "Alice",
+        age: 30,
+        city: "New York",
+        skills: ["JavaScript", "HTML", "CSS"],
+      };
+
+      function processFruits(fruitArray) {
+        let result = `We have ${fruitArray.length} fruits: `;
+        fruitArray.forEach((fruit, index) => {
+          result += `${index + 1}. ${fruit} `;
+        });
+        return result;
+      }
+
+      function displayPersonInfo(personObj) {
+        return `Name: ${personObj.name}, Age: ${personObj.age}, City: ${
+          personObj.city
+        }, Skills: ${personObj.skills.join(", ")}`;
+      }
+
+      // Step 7: Complete Demo
+      function runCompleteDemo() {
+        let students = [
+          { name: "John", age: 20, grade: 85 },
+          { name: "Sarah", age: 19, grade: 92 },
+          { name: "Mike", age: 21, grade: 78 },
+          { name: "Emma", age: 20, grade: 88 },
+        ];
+
+        let results = [];
+
+        for (let i = 0; i < students.length; i++) {
+          let student = students[i];
+          let letterGrade = calculateLetterGrade(student.grade);
+          let ageCategory = checkAge(student.age);
+          let status = student.grade >= 80 ? "Passing" : "Needs Improvement";
+
+          let studentReport = {
+            name: student.name,
+            age: student.age,
+            numericGrade: student.grade,
+            letterGrade: letterGrade,
+            ageCategory: ageCategory,
+            status: status,
+          };
+
+          results.push(studentReport);
+        }
+
+        return results;
+      }
+
+      function calculateLetterGrade(grade) {
+        if (grade >= 90) return "A";
+        else if (grade >= 80) return "B";
+        else if (grade >= 70) return "C";
+        else if (grade >= 60) return "D";
+        else return "F";
+      }
+
+      // Interactive Demo Functions
+      function showVariables() {
+        let output = `
+                <h3>Variables and Data Types:</h3>
+                <p><strong>name:</strong> "${name}" (type: ${typeof name})</p>
+                <p><strong>age:</strong> ${age} (type: ${typeof age})</p>
+                <p><strong>isStudent:</strong> ${isStudent} (type: ${typeof isStudent})</p>
+                <p><strong>hobbies:</strong> ${hobbies} (type: ${typeof hobbies})</p>
+                <p><strong>city:</strong> ${city} (type: ${typeof city})</p>
+            `;
+        document.getElementById("results").innerHTML = output;
+      }
+
+      function showOperators() {
+        let output = `
+                <h3>Basic Operators:</h3>
+                <p><strong>x:</strong> ${x}, <strong>y:</strong> ${y}</p>
+                <p><strong>Addition (x + y):</strong> ${sum}</p>
+                <p><strong>Subtraction (x - y):</strong> ${difference}</p>
+                <p><strong>Multiplication (x * y):</strong> ${product}</p>
+                <p><strong>Division (x / y):</strong> ${quotient}</p>
+                <p><strong>x equals y:</strong> ${isEqual}</p>
+                <p><strong>x greater than y:</strong> ${isGreater}</p>
+            `;
+        document.getElementById("results").innerHTML = output;
+      }
+
+      function showFunctions() {
+        let greeting = greetUser("Alice", 28);
+        let area = calculateArea(5, 3);
+        let time = getCurrentTime();
+
+        let output = `
+                <h3>Functions:</h3>
+                <p><strong>Greeting function:</strong> ${greeting}</p>
+                <p><strong>Calculate area (5 × 3):</strong> ${area}</p>
+                <p><strong>Current time:</strong> ${time}</p>
+            `;
+        document.getElementById("results").innerHTML = output;
+      }
+
+      function showConditionals() {
+        let ageCheck1 = checkAge(15);
+        let ageCheck2 = checkAge(25);
+        let dayType1 = getDayType("Monday");
+        let dayType2 = getDayType("Saturday");
+
+        let output = `
+                <h3>Conditionals:</h3>
+                <p><strong>Age 15:</strong> ${ageCheck1}</p>
+                <p><strong>Age 25:</strong> ${ageCheck2}</p>
+                <p><strong>Monday:</strong> ${dayType1}</p>
+                <p><strong>Saturday:</strong> ${dayType2}</p>
+            `;
+        document.getElementById("results").innerHTML = output;
+      }
+
+      function showLoops() {
+        let counting = countToFive();
+        let doubling = doubleUntil100(3);
+
+        let output = `
+                <h3>Loops:</h3>
+                <p><strong>Count to 5:</strong> ${counting}</p>
+                <p><strong>Double 3 until over 100:</strong> [${doubling.join(
+                  ", "
+                )}]</p>
+            `;
+        document.getElementById("results").innerHTML = output;
+      }
+
+      function showArraysObjects() {
+        let fruitInfo = processFruits(fruits);
+        let personInfo = displayPersonInfo(person);
+
+        let output = `
+                <h3>Arrays and Objects:</h3>
+                <p><strong>Fruits array:</strong> ${fruitInfo}</p>
+                <p><strong>Person object:</strong> ${personInfo}</p>
+            `;
+        document.getElementById("results").innerHTML = output;
+      }
+
+      function runFullDemo() {
+        let demoResults = runCompleteDemo();
+        let output = "<h3>Complete Demo - Student Management System:</h3>";
+
+        demoResults.forEach((student) => {
+          output += `
+                    <div class="demo-result">
+                        <strong style="color: #2c3e50; font-size: 1.2em;">${
+                          student.name
+                        }</strong> 
+                        <span style="color: #6c757d;">(Age: ${student.age}, ${
+            student.ageCategory
+          })</span><br>
+                        <span style="color: #495057;">Grade: </span>
+                        <span style="color: #28a745; font-weight: bold;">${
+                          student.numericGrade
+                        }</span> 
+              <span style="color: #007bff;">(${student.letterGrade})</span> - 
+                        <span style="color: ${
+                          student.status === "Passing" ? "#28a745" : "#dc3545"
+                        }; font-weight: bold;">
+                            Status: ${student.status}
+                        </span>
+                    </div>
+                `;
+        });
+
+        document.getElementById("results").innerHTML = output;
+      }
+
+      function clearResults() {
+        document.getElementById("results").innerHTML = "";
+      }
+
+      // Interactive test functions
+      function testVariables() {
+        const name = document.getElementById("varName").value;
+        const age = Number(document.getElementById("varAge").value);
+        const isStudent = document.getElementById("varIsStudent").checked;
+
+        const output = `
+          String (name): ${name} (type: ${typeof name})
+          Number (age): ${age} (type: ${typeof age})
+          Boolean (isStudent): ${isStudent} (type: ${typeof isStudent})
+        `;
+
+        document.getElementById("variablesOutput").innerText = output;
+      }
+
+      function testOperators() {
+        const x = Number(document.getElementById("opX").value);
+        const y = Number(document.getElementById("opY").value);
+
+        const output = `
+          Addition: ${x} + ${y} = ${x + y}
+          Subtraction: ${x} - ${y} = ${x - y}
+          Multiplication: ${x} × ${y} = ${x * y}
+          Division: ${x} ÷ ${y} = ${x / y}
+          Equal: ${x} == ${y} is ${x == y}
+          Greater: ${x} > ${y} is ${x > y}
+          Less: ${x} < ${y} is ${x < y}
+        `;
+
+        document.getElementById("operatorsOutput").innerText = output;
+      }
+
+      function testFunctions() {
+        const name = document.getElementById("funcName").value;
+        const age = Number(document.getElementById("funcAge").value);
+        const length = Number(document.getElementById("rectLength").value);
+        const width = Number(document.getElementById("rectWidth").value);
+
+        const greeting = greetUser(name, age);
+        const area = calculateArea(length, width);
+        const time = getCurrentTime();
+
+        const output = `
+          Greeting: ${greeting}
+          Rectangle Area: ${area} square units
+          Current Time: ${time}
+        `;
+
+        document.getElementById("functionsOutput").innerText = output;
+      }
+
+      function testConditionals() {
+        const age = Number(document.getElementById("checkAgeInput").value);
+        const day = document.getElementById("dayInput").value;
+
+        const ageResult = checkAge(age);
+        const dayResult = getDayType(day);
+
+        const output = `
+          Age Check (${age}): ${ageResult}
+          Day Type (${day}): ${dayResult}
+        `;
+
+        document.getElementById("conditionalsOutput").innerText = output;
+      }
+
+      // Helper function to show age check flow
+      function getAgeCheckFlow(age) {
+        let flow = `if (${age} >= 18) `;
+        if (age >= 18) {
+          flow += `<span class="highlight">→ true → "You are an adult"</span>`;
+        } else {
+          flow += `→ false\n`;
+          flow += `if (${age} >= 13) `;
+          if (age >= 13) {
+            flow += `<span class="highlight">→ true → "You are a teenager"</span>`;
+          } else {
+            flow += `→ false\n`;
+            flow += `<span class="highlight">→ "You are a child"</span>`;
+          }
+        }
+        return flow;
+      }
+
+      // Helper function to show day type flow
+      function getDayTypeFlow(day) {
+        let flow = `switch("${day}")\n`;
+        const weekdays = [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+        ];
+        const weekends = ["Saturday", "Sunday"];
+
+        if (weekdays.includes(day)) {
+          flow += `<span class="highlight">case '${day}' → 'Weekday'</span>`;
+        } else if (weekends.includes(day)) {
+          flow += `<span class="highlight">case '${day}' → 'Weekend'</span>`;
+        } else {
+          flow += `<span class="highlight">default → 'Invalid day'</span>`;
+        }
+        return flow;
+      }
+
+      function testLoops() {
+        const countTo = Number(document.getElementById("countInput").value);
+        const startNumber = Number(document.getElementById("startNum").value);
+
+        let countingSteps = "";
+        for (let i = 1; i <= countTo; i++) {
+          countingSteps += `
+            <div class="flow-step">
+              <div class="code-line">Iteration ${i}: i = ${i}</div>
+              <div class="code-line">result += "Count: ${i} "</div>
+            </div>
+          `;
+        }
+
+        let doublingSteps = "";
+        let num = startNumber;
+        while (num <= 100) {
+          doublingSteps += `
+            <div class="flow-step">
+              <div class="code-line">num = ${num}</div>
+              <div class="code-line">${
+                num <= 100 ? "→ push(" + num + ")" : ""
+              }</div>
+              <div class="code-line">${
+                num <= 100 ? "→ num * 2 = " + num * 2 : ""
+              }</div>
+            </div>
+          `;
+          num = num * 2;
+        }
+
+        const executionFlow = `
+          <div class="execution-flow">
+            <h4>For Loop Execution:</h4>
+            ${countingSteps}
+            <h4>While Loop Execution:</h4>
+            ${doublingSteps}
+          </div>
+        `;
+
+        let countResult = "";
+        for (let i = 1; i <= countTo; i++) {
+          countResult += `Count: ${i} `;
+        }
+
+        const doubleResult = doubleUntil100(startNumber);
+
+        const output = `
+          Counting to ${countTo}: ${countResult}
+          Doubling from ${startNumber}: [${doubleResult.join(", ")}]
+        `;
+
+        document.getElementById("loopsOutput").innerText =
+          executionFlow + output;
+      }
+
+      let interactiveFruits = ["apple", "banana", "orange", "grape"];
+
+      function addFruit() {
+        const newFruit = document.getElementById("fruitInput").value.trim();
+        if (newFruit) {
+          interactiveFruits.push(newFruit);
+          document.getElementById("fruitInput").value = "";
+          updateFruitsList();
+        }
+      }
+
+      function updateFruitsList() {
+        document.getElementById(
+          "fruitsOutput"
+        ).innerText = `[${interactiveFruits.join(", ")}]`;
+      }
+
+      function testArraysObjects() {
+        const name = document.getElementById("personName").value;
+        const age = Number(document.getElementById("personAge").value);
+        const city = document.getElementById("personCity").value;
+
+        const person = {
+          name: name,
+          age: age,
+          city: city,
+          skills: ["JavaScript", "HTML", "CSS"],
+        };
+
+        const fruitsList = processFruits(interactiveFruits);
+        const personInfo = displayPersonInfo(person);
+
+        const output = `
+          Fruits: ${fruitsList}
+          Person Info: ${personInfo}
+        `;
+
+        document.getElementById("arrayObjectOutput").innerText = output;
+      }
+
+      // Initialize fruits list on load
+      window.addEventListener("load", updateFruitsList);
+    </script>
+  </body>
+</html>

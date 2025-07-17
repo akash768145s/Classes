@@ -1,0 +1,25 @@
+.content p {
+    color: blue;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid blue;
+}
+
+/* Targeting paragraphs inside nested div */
+.content .nested p {
+    color: purple;
+    background-color: #f0f0f0;
+}
+
+/* Targeting the deepest paragraph */
+.content .nested span p {
+    color: red;
+    font-weight: bold;
+    border: 2px dashed red;
+}
+
+/* This won't affect paragraphs inside .content */
+.another-section p {
+    color: green;
+    font-style: italic;
+}

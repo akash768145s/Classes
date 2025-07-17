@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual DOM for Beginners</title>
+    <style>
+      body {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      .header {
+        text-align: center;
+        background-color: #ff9800;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .demo-box {
+        border: 3px dashed #4caf50;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: white;
+      }
+      .tanglish {
+        background-color: #fffde7;
+        border-left: 5px solid #ffc107;
+        padding: 10px;
+        margin: 10px 0;
+        font-style: italic;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 5px;
+        transition: transform 0.2s;
+      }
+      button:hover {
+        transform: scale(1.05);
+        background-color: #45a049;
+      }
+      .todo-item {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+      .todo-item.completed {
+        text-decoration: line-through;
+        color: #888;
+      }
+      .todo-item.highlight {
+        animation: highlight 1s;
+      }
+      .todo-input {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-right: 10px;
+        width: 60%;
+      }
+      .comparison {
+        display: flex;
+        gap: 20px;
+      }
+      .panel {
+        flex: 1;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+      }
+      .panel h3 {
+        margin-top: 0;
+        text-align: center;
+      }
+      .timer {
+        font-family: monospace;
+        text-align: center;
+        margin: 10px 0;
+        font-size: 20px;
+      }
+      @keyframes highlight {
+        0% {
+          background-color: yellow;
+        }
+        100% {
+          background-color: transparent;
+        }
+      }
+      .emoji {
+        font-size: 24px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🎭 Virtual DOM Magic Show 🎭</h1>
+    </div>
+
+    <div class="tanglish">
+      <p>
+        <span class="emoji">🙏</span> <strong>Namaskaram friends!</strong> Today
+        we are going to be seeing one super duper concept called "Virtual DOM".
+        This concept is like magic trick only! You will be saying "Ayyayo! How
+        it is working like this?!"
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="demo-box">
+        <h2><span class="emoji">📝</span> Todo List with Virtual DOM</h2>
+
+        <div class="tanglish">
+          <p>
+            <strong>How to use this one:</strong> Simply you are adding todo
+            items, marking as completed, or removing them. But the magic is
+            happening behind! One side using normal DOM (slow fellow), other
+            side using Virtual DOM (smart fellow)!
+          </p>
+        </div>
+
+        <div>
+          <input
+            type="text"
+            id="todo-input"
+            class="todo-input"
+            placeholder="Enter new todo item..."
+          />
+          <button id="add-todo">Add Todo</button>
+        </div>
+
+        <div class="comparison">
+          <div class="panel">
+            <h3>Normal DOM 🐢</h3>
+            <div class="tanglish">
+              <p>
+                This fellow is rebuilding everything-everything when any small
+                change is coming. Full tension work!
+              </p>
+            </div>
+            <div id="normal-dom-container"></div>
+            <div class="timer" id="normal-timer">Time: 0ms</div>
+          </div>
+
+          <div class="panel">
+            <h3>Virtual DOM 🚀</h3>
+            <div class="tanglish">
+              <p>
+                This smart fellow is only changing what is needed. Very less
+                work, very fast!
+              </p>
+            </div>
+            <div id="virtual-dom-container"></div>
+            <div class="timer" id="virtual-timer">Time: 0ms</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-box">
+        <h2><span class="emoji">🧠</span> How Virtual DOM is Working?</h2>
+
+        <div class="tanglish">
+          <p>
+            <strong>Listen carefully friends!</strong> Virtual DOM is like
+            making photocopy of your document before writing on it!
+          </p>
+          <ol>
+            <li>
+              First it is keeping one copy of DOM in memory only (not in real
+              page)
+            </li>
+            <li>When change is coming, it is making new copy with changes</li>
+            <li>
+              Then it is comparing old copy and new copy to see what exactly
+              changed
+            </li>
+            <li>Finally it is updating ONLY the changed parts in real DOM</li>
+            <li>This way, very less work is happening! Very efficient!</li>
+          </ol>
+          <p>
+            <strong>Simple example:</strong> If you are changing one letter in
+            big book, you are not rewriting full book! You are only changing
+            that one letter only! Same logic!
+          </p>
+        </div>
+      </div>
+
+      <div class="demo-box">
+        <h2><span class="emoji">🎮</span> Try These Experiments!</h2>
+
+        <div class="tanglish">
+          <p>
+            Do these things and observe the time difference between Normal DOM
+            and Virtual DOM:
+          </p>
+          <ol>
+            <li>Add many-many todos quickly</li>
+            <li>Mark some as completed</li>
+            <li>Delete some todos</li>
+          </ol>
+          <p>
+            <strong>You will be seeing:</strong> When list is becoming bigger
+            and bigger, Normal DOM is becoming slower and slower, but Virtual
+            DOM is still fast only!
+          </p>
+        </div>
+
+        <button id="add-many">Add 10 Random Todos</button>
+        <button id="complete-random">Complete Random Todos</button>
+        <button id="delete-random">Delete Random Todos</button>
+      </div>
+    </div>
+
+    <script src="simple-vdom.js"></script>
+  </body>
+</html>

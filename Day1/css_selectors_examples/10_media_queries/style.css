@@ -1,0 +1,140 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Navigation */
+.nav {
+    background-color: #333;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Screen Size Indicators */
+.screen-indicator p {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    background: #e3f2fd;
+    border: 2px dashed #2196f3;
+    margin-top: 20px;
+}
+
+.screen-indicator .desktop {
+    display: block;
+}
+
+/* Tablet Styles */
+@media screen and (max-width: 1024px) {
+    .screen-indicator .desktop {
+        display: none;
+    }
+
+    .screen-indicator .tablet {
+        display: block;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        flex: 0 0 calc(50% - 10px);
+    }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .menu.show {
+        display: flex;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+
+    .card {
+        flex: 1;
+    }
+
+    .screen-indicator .tablet {
+        display: none;
+    }
+
+    .screen-indicator .mobile {
+        display: block;
+    }
+}

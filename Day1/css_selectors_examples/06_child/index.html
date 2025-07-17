@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="parent">
+      <!-- Direct children of .parent -->
+      <p>I'm a direct child of .parent</p>
+      <span>I'm also a direct child of .parent</span>
+
+      <!-- Nested elements -->
+      <div class="nested">
+        <p>I'm a child of .nested, not .parent</p>
+        <span>
+          <p>I'm deeply nested, not a direct child</p>
+        </span>
+      </div>
+
+      <!-- Another direct child -->
+      <p>I'm another direct child of .parent</p>
+    </div>
+
+    <!-- Sibling container for comparison -->
+    <div class="another-parent">
+      <p>I'm a child of .another-parent</p>
+    </div>
+  </body>
+</html>

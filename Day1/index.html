@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind CSS vs CSS Comparison Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Base styles */
+    :root {
+      --container-width: min(210mm, 95vw);
+      --container-padding: clamp(15px, 3vw, 40px);
+    }
+
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      width: 100%;
+      margin: 0;
+      padding: var(--container-padding);
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    .pdf-container {
+      background: white;
+      width: var(--container-width);
+      padding: var(--container-padding);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      transition: transform 0.3s ease;
+    }
+
+    /* Typography */
+    h1 {
+      color: #1e40af;
+      text-align: center;
+      border-bottom: 3px solid #3b82f6;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      color: #1e40af;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-left: 4px solid #3b82f6;
+      padding-left: 15px;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6 0%, transparent 100%);
+      margin-left: 15px;
+      min-width: 50px;
+    }
+
+    h3 {
+      color: #374151;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: clamp(1.2rem, 2vw, 1.4rem);
+    }
+
+    /* Grid and Layout */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(15px, 3vw, 25px);
+      margin: 30px 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .css-side,
+    .tailwind-side {
+      padding: clamp(15px, 3vw, 25px);
+      transition: all 0.3s ease;
+    }
+
+    .css-side {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    }
+
+    .tailwind-side {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    }
+
+    @media (max-width: 767px) {
+      .css-side {
+        border-bottom: 1px solid #e5e7eb;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .css-side {
+        border-right: 1px solid #e5e7eb;
+      }
+    }
+
+    /* Code Blocks */
+    .code-block {
+      background: #1f2937;
+      color: #e5e7eb;
+      padding: clamp(15px, 2vw, 20px);
+      border-radius: 8px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: clamp(11px, 1.5vw, 13px);
+      overflow-x: auto;
+      margin: 15px 0;
+      white-space: pre-wrap;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Demo Boxes */
+    .demo-box {
+      margin: 20px 0;
+      padding: clamp(15px, 2vw, 20px);
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Pros and Cons */
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 3vw, 30px);
+      margin: 30px 0;
+    }
+
+    @media (min-width: 768px) {
+      .pros-cons {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .pros,
+    .cons {
+      padding: clamp(20px, 3vw, 25px);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .pros {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border: 1px solid #10b981;
+    }
+
+    .cons {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border: 1px solid #ef4444;
+    }
+
+    /* Lists */
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      padding: 8px 0;
+      padding-left: 25px;
+      position: relative;
+      font-size: clamp(14px, 1.6vw, 16px);
+    }
+
+    ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #3b82f6;
+      font-weight: bold;
+    }
+
+    .pros ul li::before {
+      content: "✓";
+      color: #059669;
+    }
+
+    .cons ul li::before {
+      content: "•";
+      color: #dc2626;
+    }
+
+    /* Print Button */
+    .print-button {
+      position: fixed;
+      top: clamp(10px, 2vw, 20px);
+      right: clamp(10px, 2vw, 20px);
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      padding: clamp(8px, 1.5vw, 12px) clamp(16px, 2vw, 24px);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: clamp(12px, 1.4vw, 14px);
+      font-weight: 500;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+    }
+
+    /* Hover Effects */
+    @media (hover: hover) {
+      .pdf-container:hover {
+        transform: translateY(-2px);
+      }
+
+      .comparison-grid:hover {
+        transform: scale(1.01);
+      }
+
+      .demo-box:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .pros:hover,
+      .cons:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .print-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.6);
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .pdf-container {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        padding: 20px;
+        margin: 0;
+      }
+
+      .print-button {
+        display: none;
+      }
+
+      .comparison-grid,
+      .pros-cons {
+        break-inside: avoid;
+      }
+
+      .code-block {
+        border: 1px solid #d1d5db;
+      }
+    }
+
+    /* Mobile Optimizations */
+    @media (max-width: 480px) {
+      :root {
+        --container-padding: 15px;
+      }
+
+      .code-block {
+        font-size: 11px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      .print-button {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-button" onclick="window.print()">Print/Save as PDF</button>
+
+  <div class="pdf-container">
+    <h1>Tailwind CSS vs Traditional CSS</h1>
+    <p style="text-align: center; font-style: italic; margin-bottom: 40px">
+      A comprehensive comparison with practical examples and visual demonstrations
+    </p>
+
+    <h2>1. Basic Button Styling</h2>
+    <div class="comparison-grid">
+      <div class="css-side">
+        <h3>Traditional CSS</h3>
+        <div class="code-block">.btn {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #2563eb;
+}</div>
+        <div class="demo-box">
+          <button style="
+            background-color: #3b82f6;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+          ">Click Me</button>
+        </div>
+      </div>
+      <div class="tailwind-side">
+        <h3>Tailwind CSS</h3>
+        <div class="code-block">&lt;button class="bg-blue-500 hover:bg-blue-600 
+           text-white font-medium py-3 px-6 
+           rounded-md transition-colors"&gt;
+  Click Me
+&lt;/button&gt;</div>
+        <div class="demo-box">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-md transition-colors">
+            Click Me
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <h2>2. Card Component</h2>
+    <div class="comparison-grid">
+      <div class="css-side">
+        <h3>Traditional CSS</h3>
+        <div class="code-block">.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin: 16px 0;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.card-content {
+  color: #6b7280;
+  line-height: 1.6;
+}</div>
+        <div class="demo-box">
+          <div style="
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin: 16px 0;
+          ">
+            <h3 style="
+              font-size: 20px;
+              font-weight: 600;
+              color: #1f2937;
+              margin-bottom: 8px;
+            ">Card Title</h3>
+            <p style="color: #6b7280; line-height: 1.6">
+              This is the card content with some descriptive text.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tailwind-side">
+        <h3>Tailwind CSS</h3>
+        <div class="code-block">&lt;div class="bg-white rounded-lg shadow-md p-6 my-4"&gt;
+  &lt;h3 class="text-xl font-semibold text-gray-800 mb-2"&gt;
+    Card Title
+  &lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;
+    This is the card content with some descriptive text.
+  &lt;/p&gt;
+&lt;/div&gt;</div>
+        <div class="demo-box">
+          <div class="bg-white rounded-lg shadow-md p-6 my-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title</h3>
+            <p class="text-gray-600">
+              This is the card content with some descriptive text.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>3. Responsive Grid Layout</h2>
+    <div class="comparison-grid">
+      <div class="css-side">
+        <h3>Traditional CSS</h3>
+        <div class="code-block">.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-item {
+  background: #f3f4f6;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}</div>
+        <div class="demo-box">
+          <div style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+          ">
+            <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; text-align: center;">
+              Item 1
+            </div>
+            <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; text-align: center;">
+              Item 2
+            </div>
+            <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; text-align: center;">
+              Item 3
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tailwind-side">
+        <h3>Tailwind CSS</h3>
+        <div class="code-block">&lt;div class="grid grid-cols-1 md:grid-cols-2 
+           lg:grid-cols-3 gap-5 p-5"&gt;
+  &lt;div class="bg-gray-100 p-5 rounded-lg text-center"&gt;
+    Item 1
+  &lt;/div&gt;
+  &lt;div class="bg-gray-100 p-5 rounded-lg text-center"&gt;
+    Item 2
+  &lt;/div&gt;
+  &lt;div class="bg-gray-100 p-5 rounded-lg text-center"&gt;
+    Item 3
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+        <div class="demo-box">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
+            <div class="bg-gray-100 p-5 rounded-lg text-center">Item 1</div>
+            <div class="bg-gray-100 p-5 rounded-lg text-center">Item 2</div>
+            <div class="bg-gray-100 p-5 rounded-lg text-center">Item 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>4. Navigation Bar</h2>
+    <div class="comparison-grid">
+      <div class="css-side">
+        <h3>Traditional CSS</h3>
+        <div class="code-block">.navbar {
+  background: #1f2937;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar-nav a:hover {
+  color: white;
+}</div>
+        <div class="demo-box">
+          <nav style="
+            background: #1f2937;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
+          ">
+            <a href="#" style="
+              color: white;
+              font-size: 20px;
+              font-weight: 600;
+              text-decoration: none;
+            ">Brand</a>
+            <div style="display: flex; gap: 24px">
+              <a href="#" style="color: #d1d5db; text-decoration: none">Home</a>
+              <a href="#" style="color: #d1d5db; text-decoration: none">About</a>
+              <a href="#" style="color: #d1d5db; text-decoration: none">Contact</a>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="tailwind-side">
+        <h3>Tailwind CSS</h3>
+        <div class="code-block">&lt;nav class="bg-gray-800 px-8 py-4 flex 
+           justify-between items-center rounded-md"&gt;
+  &lt;a href="#" class="text-white text-xl font-semibold"&gt;
+    Brand
+  &lt;/a&gt;
+  &lt;div class="flex space-x-6"&gt;
+    &lt;a href="#" class="text-gray-300 hover:text-white 
+       transition-colors"&gt;Home&lt;/a&gt;
+    &lt;a href="#" class="text-gray-300 hover:text-white 
+       transition-colors"&gt;About&lt;/a&gt;
+    &lt;a href="#" class="text-gray-300 hover:text-white 
+       transition-colors"&gt;Contact&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</div>
+        <div class="demo-box">
+          <nav class="bg-gray-800 px-8 py-4 flex justify-between items-center rounded-md">
+            <a href="#" class="text-white text-xl font-semibold">Brand</a>
+            <div class="flex space-x-6">
+              <a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a>
+              <a href="#" class="text-gray-300 hover:text-white transition-colors">About</a>
+              <a href="#" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <h2>5. Form Elements</h2>
+    <div class="comparison-grid">
+      <div class="css-side">
+        <h3>Traditional CSS</h3>
+        <div class="code-block">.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-button {
+  background: #10b981;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}</div>
+        <div class="demo-box">
+          <form>
+            <div style="margin-bottom: 20px">
+              <label style="
+                display: block;
+                font-weight: 500;
+                color: #374151;
+                margin-bottom: 8px;
+              ">Email</label>
+              <input type="email" style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #d1d5db;
+                border-radius: 6px;
+                font-size: 16px;
+                box-sizing: border-box;
+              " placeholder="Enter your email" />
+            </div>
+            <button type="submit" style="
+              background: #10b981;
+              color: white;
+              padding: 12px 24px;
+              border: none;
+              border-radius: 6px;
+              cursor: pointer;
+              font-size: 16px;
+              width: 100%;
+            ">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="tailwind-side">
+        <h3>Tailwind CSS</h3>
+        <div class="code-block">&lt;form class="space-y-5"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-medium 
+           text-gray-700 mb-2"&gt;
+      Email
+    &lt;/label&gt;
+    &lt;input type="email" 
+           class="w-full px-3 py-2 border border-gray-300 
+                  rounded-md focus:outline-none focus:ring-2 
+                  focus:ring-blue-500 focus:border-blue-500" 
+           placeholder="Enter your email"&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" 
+          class="w-full bg-green-500 hover:bg-green-600 
+                 text-white font-medium py-3 px-4 
+                 rounded-md transition-colors"&gt;
+    Submit
+  &lt;/button&gt;
+&lt;/form&gt;</div>
+        <div class="demo-box">
+          <form class="space-y-5">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your email" />
+            </div>
+            <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-md transition-colors">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <h2>6. Flexbox Layout</h2>
+    <div class="comparison-grid">
+      <div class="css-side">
+        <h3>Traditional CSS</h3>
+        <div class="code-block">.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.flex-item {
+  background: white;
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin: 0 8px;
+  text-align: center;
+}
+
+.flex-item:first-child {
+  margin-left: 0;
+}
+
+.flex-item:last-child {
+  margin-right: 0;
+}</div>
+        <div class="demo-box">
+          <div style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 8px;
+          ">
+            <div style="
+              background: white;
+              padding: 16px;
+              border-radius: 6px;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+              flex: 1;
+              margin-right: 8px;
+              text-align: center;
+            ">Item 1</div>
+            <div style="
+              background: white;
+              padding: 16px;
+              border-radius: 6px;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+              flex: 1;
+              margin: 0 8px;
+              text-align: center;
+            ">Item 2</div>
+            <div style="
+              background: white;
+              padding: 16px;
+              border-radius: 6px;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+              flex: 1;
+              margin-left: 8px;
+              text-align: center;
+            ">Item 3</div>
+          </div>
+        </div>
+      </div>
+      <div class="tailwind-side">
+        <h3>Tailwind CSS</h3>
+        <div class="code-block">&lt;div class="flex items-center justify-between 
+           p-5 bg-gray-50 rounded-lg"&gt;
+  &lt;div class="flex-1 bg-white p-4 rounded-md 
+             shadow-sm text-center mx-2 
+             first:ml-0 last:mr-0"&gt;
+    Item 1
+  &lt;/div&gt;
+  &lt;div class="flex-1 bg-white p-4 rounded-md 
+             shadow-sm text-center mx-2 
+             first:ml-0 last:mr-0"&gt;
+    Item 2
+  &lt;/div&gt;
+  &lt;div class="flex-1 bg-white p-4 rounded-md 
+             shadow-sm text-center mx-2 
+             first:ml-0 last:mr-0"&gt;
+    Item 3
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+        <div class="demo-box">
+          <div class="flex items-center justify-between p-5 bg-gray-50 rounded-lg">
+            <div class="flex-1 bg-white p-4 rounded-md shadow-sm text-center mx-2">Item 1</div>
+            <div class="flex-1 bg-white p-4 rounded-md shadow-sm text-center mx-2">Item 2</div>
+            <div class="flex-1 bg-white p-4 rounded-md shadow-sm text-center mx-2">Item 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>7. Alert Components</h2>
+    <div class="comparison-grid">
+      <div class="css-side">
+        <h3>Traditional CSS</h3>
+        <div class="code-block">.alert {
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid;
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+}
+
+.alert-success {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+.alert-warning {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.alert-error {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #991b1b;
+}
+
+.alert-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}</div>
+        <div class="demo-box">
+          <div style="
+            padding: 16px;
+            border-radius: 6px;
+            border: 1px solid #10b981;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            background: #d1fae5;
+            color: #065f46;
+          ">
+            <span style="margin-right: 12px">✓</span>
+            Success: Action completed successfully!
+          </div>
+          <div style="
+            padding: 16px;
+            border-radius: 6px;
+            border: 1px solid #f59e0b;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            background: #fef3c7;
+            color: #92400e;
+          ">
+            <span style="margin-right: 12px">⚠</span>
+            Warning: Please check your input!
+          </div>
+          <div style="
+            padding: 16px;
+            border-radius: 6px;
+            border: 1px solid #ef4444;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            background: #fee2e2;
+            color: #991b1b;
+          ">
+            <span style="margin-right: 12px">✗</span>
+            Error: Something went wrong!
+          </div>
+        </div>
+      </div>
+      <div class="tailwind-side">
+        <h3>Tailwind CSS</h3>
+        <div class="code-block">&lt;div class="bg-green-100 border border-green-500 
+           text-green-700 px-4 py-3 rounded-md 
+           flex items-center my-2"&gt;
+  &lt;span class="mr-3"&gt;✓&lt;/span&gt;
+  Success: Action completed successfully!
+&lt;/div&gt;
+
+&lt;div class="bg-yellow-100 border border-yellow-500 
+           text-yellow-700 px-4 py-3 rounded-md 
+           flex items-center my-2"&gt;
+  &lt;span class="mr-3"&gt;⚠&lt;/span&gt;
+  Warning: Please check your input!
+&lt;/div&gt;
+
+&lt;div class="bg-red-100 border border-red-500 
+           text-red-700 px-4 py-3 rounded-md 
+           flex items-center my-2"&gt;
+  &lt;span class="mr-3"&gt;✗&lt;/span&gt;
+  Error: Something went wrong!
+&lt;/div&gt;</div>
+        <div class="demo-box">
+          <div class="bg-green-100 border border-green-500 text-green-700 px-4 py-3 rounded-md flex items-center my-2">
+            <span class="mr-3">✓</span>
+            Success: Action completed successfully!
+          </div>
+          <div class="bg-yellow-100 border border-yellow-500 text-yellow-700 px-4 py-3 rounded-md flex items-center my-2">
+            <span class="mr-3">⚠</span>
+            Warning: Please check your input!
+          </div>
+          <div class="bg-red-100 border border-red-500 text-red-700 px-4 py-3 rounded-md flex items-center my-2">
+            <span class="mr-3">✗</span>
+            Error: Something went wrong!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>8. Dark Mode Toggle</h2>
+    <div class="comparison-grid">
+      <div class="css-side">
+        <h3>Traditional CSS</h3>
+        <div class="code-block">.theme-container {
+  background: white;
+  color: #1f2937;
+  padding: 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.theme-container.dark {
+  background: #1f2937;
+  color: white;
+}
+
+.theme-toggle {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.theme-toggle:hover {
+  background: #2563eb;
+}
+
+.dark .theme-toggle {
+  background: #f59e0b;
+}
+
+.dark .theme-toggle:hover {
+  background: #d97706;
+}</div>
+        <div class="demo-box">
+          <div id="cssTheme" style="
+            background: white;
+            color: #1f2937;
+            padding: 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+          ">
+            <button onclick="toggleCSSTheme()" style="
+              background: #3b82f6;
+              color: white;
+              border: none;
+              padding: 8px 16px;
+              border-radius: 4px;
+              cursor: pointer;
+              margin-bottom: 16px;
+            ">Toggle Theme</button>
+            <h4 style="margin: 0 0 8px 0">Dark Mode Example</h4>
+            <p style="margin: 0">
+              This is a sample content that will change themes when you toggle the button above.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tailwind-side">
+        <h3>Tailwind CSS</h3>
+        <div class="code-block">&lt;div class="bg-white dark:bg-gray-800 text-gray-800 
+           dark:text-white p-6 rounded-lg transition-colors"&gt;
+  &lt;button class="bg-blue-500 hover:bg-blue-600 
+           dark:bg-yellow-500 dark:hover:bg-yellow-600 
+           text-white px-4 py-2 rounded mb-4 
+           transition-colors"&gt;
+    Toggle Theme
+  &lt;/button&gt;
+  &lt;h4 class="mb-2"&gt;Dark Mode Example&lt;/h4&gt;
+  &lt;p&gt;This is a sample content that will change 
+     themes when you toggle the button above.&lt;/p&gt;
+&lt;/div&gt;</div>
+        <div class="demo-box">
+          <div class="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-6 rounded-lg transition-colors border border-gray-200">
+            <button class="bg-blue-500 hover:bg-blue-600 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white px-4 py-2 rounded mb-4 transition-colors">
+              Toggle Theme
+            </button>
+            <h4 class="mb-2">Dark Mode Example</h4>
+            <p>This is a sample content that will change themes when you toggle the button above.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Key Differences and Benefits</h2>
+    <div class="pros-cons">
+      <div class="pros">
+        <h3>Tailwind CSS Advantages</h3>
+        <ul>
+          <li>No need to write custom CSS or create class names</li>
+          <li>Consistent spacing, colors, and design tokens</li>
+          <li>Built-in responsive design utilities</li>
+          <li>Smaller file sizes in production with PurgeCSS</li>
+          <li>Faster development with predictable utility classes</li>
+          <li>Great developer experience with autocomplete</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h3>Traditional CSS Advantages</h3>
+        <ul>
+          <li>More semantic and readable HTML</li>
+          <li>Better separation of concerns</li>
+          <li>Easier to maintain large stylesheets</li>
+          <li>No framework dependencies</li>
+          <li>More flexibility for custom designs</li>
+          <li>Familiar to most developers</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>Both Tailwind CSS and traditional CSS have their place in modern web development. Tailwind CSS excels in rapid prototyping and consistent design implementation, while traditional CSS provides more flexibility and cleaner HTML. The choice between them often depends on project requirements, team preferences, and specific use cases.</p>
+
+    <script>
+      function toggleCSSTheme() {
+        const container = document.getElementById('cssTheme');
+        const button = container.querySelector('button');
+        const isDark = container.style.background === 'rgb(31, 41, 55)';
+        
+        if (isDark) {
+          container.style.background = 'white';
+          container.style.color = '#1f2937';
+          button.style.background = '#3b82f6';
+        } else {
+          container.style.background = '#1f2937';
+          container.style.color = 'white';
+          button.style.background = '#f59e0b';
+        }
+      }
+    </script>
+  </div>
+</body>
+</html>

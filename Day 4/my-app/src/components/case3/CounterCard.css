@@ -1,0 +1,160 @@
+/* CounterCard.css - Modern styling for counter cards */
+
+.counter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.counter-container h1 {
+    color: #6c5ce7;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+}
+
+.counter-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+    border-radius: 2px;
+}
+
+.counter-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 10px 20px rgba(108, 92, 231, 0.1);
+    transition: all 0.3s ease;
+    border-top: 5px solid #6c5ce7;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.counter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(108, 92, 231, 0.15);
+}
+
+.counter-card h2 {
+    margin: 0 0 1rem 0;
+    color: #2d3436;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.counter-card p {
+    margin: 0.8rem 0;
+    color: #636e72;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.counter-card button {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.counter-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(108, 92, 231, 0.4);
+}
+
+.counter-card button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(108, 92, 231, 0.3);
+}
+
+/* Ripple effect */
+.counter-card button::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.6s, opacity 0.6s;
+}
+
+.counter-card button:active::after {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+    transition: 0s;
+}
+
+/* Count display styling */
+.counter-card .count-display {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #6c5ce7;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.counter-card {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.counter-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.counter-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .counter-card {
+        padding: 1.2rem;
+    }
+
+    .counter-card h2 {
+        font-size: 1.3rem;
+    }
+
+    .counter-card button {
+        padding: 0.7rem 1.2rem;
+    }
+}

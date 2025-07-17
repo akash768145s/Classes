@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Box Model Demo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Understanding CSS Box Model</h1>
+
+      <section class="box-model-demo">
+        <h2>Basic Box Model Example</h2>
+        <div class="box">
+          <p>This box demonstrates all box model properties:</p>
+          <ul>
+            <li>Content - The actual content</li>
+            <li>Padding - Space around content</li>
+            <li>Border - Line around padding</li>
+            <li>Margin - Space outside border</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="box-variations">
+        <h2>Different Box Model Examples</h2>
+
+        <div class="box-container">
+          <div class="box-1">
+            <p>Box with padding</p>
+          </div>
+
+          <div class="box-2">
+            <p>Box with border</p>
+          </div>
+
+          <div class="box-3">
+            <p>Box with margin</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="box-sizing-demo">
+        <h2>Box Sizing Comparison</h2>
+        <div class="boxes-wrapper">
+          <div class="content-box">
+            <p>content-box</p>
+            <span>Width: 200px + padding + border</span>
+          </div>
+
+          <div class="border-box">
+            <p>border-box</p>
+            <span>Total width: 200px (includes padding + border)</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

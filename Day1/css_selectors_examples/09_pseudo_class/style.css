@@ -1,0 +1,89 @@
+/* Interactive Element States */
+button {
+    background-color:black;
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #4CAF50;
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+input:focus {
+    outline: 2px solid #4CAF50;
+    background-color: #f0f0f0;
+}
+
+
+/* List Item Pseudo-classes */
+.fancy-list li {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.fancy-list li:first-child {
+    border-top: 3px solid #4CAF50;
+    font-weight: bold;
+}
+
+.fancy-list li:last-child {
+    border-bottom: 3px solid #4CAF50;
+    font-style: italic;
+}
+
+.fancy-list li:nth-child(odd) {
+    background-color:blue;
+}
+
+.fancy-list li:nth-child(even) {
+    background-color: yellow;
+}
+
+.fancy-list li:hover {
+    background-color:tomato;
+    transform: translateX(10px);
+}
+
+/* Form Element States */
+input:required {
+    border: 2px solid #ff9800;
+}
+
+input:optional {
+    border: 1px solid #ddd;
+}
+
+input[type="checkbox"]:checked+label {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover:not(:disabled) {
+    background-color: #45a049;
+    cursor: pointer;
+}
+
+/* Text Selection */
+.selectable::selection {
+    background-color: #ffeb3b;
+    color: black;
+}
+
+.unselectable {
+    user-select: none;
+    color: #666;
+}
+
+/* Empty State */
+div:empty {
+    padding: 20px;
+    border: 2px dashed #ccc;
+}
+
+
+
