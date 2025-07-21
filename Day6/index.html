@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Props Drilling vs Context API</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #3498db;
+        --secondary-color: #2ecc71;
+        --background-light: #f4f6f7;
+        --text-dark: #2c3e50;
+        --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --code-background: #f4f4f4;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background-color: var(--background-light);
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1600px;
+        width: 100%;
+        background: white;
+        border-radius: 16px;
+        box-shadow: var(--card-shadow);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        padding: 2rem;
+      }
+
+      .section {
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .code-block {
+        background: var(--code-background);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+        overflow-x: auto;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        max-height: 500px;
+        overflow-y: auto;
+      }
+
+      .button {
+        display: inline-block;
+        background: var(--primary-color);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s ease;
+        margin-top: 1rem;
+      }
+
+      .button:hover {
+        background: #2980b9;
+      }
+
+      .pros-cons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+
+      .pros-cons > div {
+        width: 48%;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+
+      .pros {
+        background-color: #e6f3e6;
+      }
+
+      .cons {
+        background-color: #f3e6e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🚀 State Management in React</h1>
+        <p>Props Drilling vs Context API</p>
+      </div>
+
+      <div class="content">
+        <div class="section">
+          <h2>Props Drilling 🕳️</h2>
+          <p>Passing User Authentication State</p>
+          <div class="code-block">
+            <pre>
+// App.js
+function App() {
+  const [user, setUser] = useState(null);
+
+  const login = (userData) => {
+    setUser(userData);
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
+
+  return (
+    &lt;DashboardPage 
+      user={user} 
+      login={login} 
+      logout={logout} 
+    /&gt;
+  );
+}
+
+// DashboardPage.js
+function DashboardPage({ user, login, logout }) {
+  return (
+    &lt;div&gt;
+      &lt;UserProfile 
+        user={user} 
+        logout={logout} 
+      /&gt;
+      &lt;AdminPanel 
+        user={user} 
+        login={login} 
+      /&gt;
+    &lt;/div&gt;
+  );
+}
+
+// UserProfile.js
+function UserProfile({ user, logout }) {
+  if (!user) return &lt;LoginForm /&gt;;
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Welcome, {user.name}&lt;/h2&gt;
+      &lt;button onClick={logout}&gt;Logout&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+// AdminPanel.js
+function AdminPanel({ user, login }) {
+  // Must receive user prop to check permissions
+  if (user?.role !== 'admin') {
+    return &lt;div&gt;Access Denied&lt;/div&gt;;
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Admin Dashboard&lt;/h3&gt;
+      &lt;UserManagement /&gt;
+    &lt;/div&gt;
+  );
+}
+                    </pre
+            >
+          </div>
+          <div class="pros-cons">
+            <div class="cons">
+              <h4>Cons of Props Drilling</h4>
+              <ul>
+                <li>Complex prop passing</li>
+                <li>Tightly coupled components</li>
+                <li>Harder to maintain</li>
+                <li>Performance overhead</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Context API 🌐</h2>
+          <p>Centralized Authentication Management</p>
+          <div class="code-block">
+            <pre>
+// AuthContext.js
+const AuthContext = createContext();
+
+function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+
+  const login = (userData) => {
+    setUser(userData);
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
+
+  const hasPermission = (requiredRole) => {
+    return user && user.role === requiredRole;
+  };
+
+  return (
+    &lt;AuthContext.Provider 
+      value={{ 
+        user, 
+        login, 
+        logout,
+        hasPermission,
+        isAuthenticated: !!user 
+      }}
+    &gt;
+      {children}
+    &lt;/AuthContext.Provider&gt;
+  );
+}
+
+// UserProfile.js
+function UserProfile() {
+  const { user, logout } = useContext(AuthContext);
+
+  if (!user) return &lt;LoginForm /&gt;;
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Welcome, {user.name}&lt;/h2&gt;
+      &lt;button onClick={logout}&gt;Logout&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+// AdminPanel.js
+function AdminPanel() {
+  const { hasPermission } = useContext(AuthContext);
+
+  if (!hasPermission('admin')) {
+    return &lt;div&gt;Access Denied&lt;/div&gt;;
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Admin Dashboard&lt;/h3&gt;
+      &lt;UserManagement /&gt;
+    &lt;/div&gt;
+  );
+}
+
+// App.js
+function App() {
+  return (
+    &lt;AuthProvider&gt;
+      &lt;Router&gt;
+        &lt;UserProfile /&gt;
+        &lt;AdminPanel /&gt;
+      &lt;/Router&gt;
+    &lt;/AuthProvider&gt;
+  );
+}
+                    </pre
+            >
+          </div>
+          <div class="pros-cons">
+            <div class="pros">
+              <h4>Pros of Context API</h4>
+              <ul>
+                <li>Centralized state management</li>
+                <li>Simplified component logic</li>
+                <li>Easy permission checks</li>
+                <li>Global access to auth methods</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
