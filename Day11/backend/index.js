@@ -1,42 +1,47 @@
 const express = require('express');
 const cors = require('cors');
+const connectDB = require('./config/database');
+const studentRoutes = require('./routes/students');
+
 const app = express();
-app.use(cors());
+
+// Middleware
+// 🌐 Middleware setup
+app.use(cors({
+    origin: 'http://localhost:5173', // ✅ only allow this Vite frontend
+    credentials: true // optional: only if you're using cookies or auth tokens
+}));
 app.use(express.json());
 
-let students = [
-    { id: 1, name: 'Arun' },
-    { id: 2, name: 'Divya' }
-];
+// Connect to MongoDB
+connectDB();
 
-// GET all students
-app.get('/students', (req, res) => {
-    res.json(students);
+// Routes
+app.use('/students', studentRoutes);
+
+
+// 404 handler
+app.use('*', (req, res) => {
+    res.status(404).json({ error: 'Route not found' });
 });
 
-// POST new student
-app.post('/students', (req, res) => {
-    const newStudent = {
-        id: Date.now(),
-        name: req.body.name
-    };
-    students.push(newStudent);
-    res.status(201).json(newStudent);
-});
-
-// PUT update student
-app.put('/students/:id', (req, res) => {
-    const student = students.find(s => s.id == req.params.id);
-    if (!student) return res.status(404).send('Not found');
-    student.name = req.body.name;
-    res.json(student);
-});
-
-// DELETE student
-app.delete('/students/:id', (req, res) => {
-    students = students.filter(s => s.id != req.params.id);
-    res.sendStatus(204);
+// Global error handler
+app.use((error, req, res, next) => {
+    console.error('Global error:', error);
+    res.status(500).json({ error: 'Internal server error' });
 });
 
 // Start server
-app.listen(3000, () => console.log('🚀 Backend running on http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`🚀 Backend running on http://localhost:${PORT}`);
+    console.log(`📚 API Documentation:`);
+    console.log(`   GET    /health - Health check`);
+    console.log(`   GET    /students - Get all students`);
+    console.log(`   GET    /students/:id - Get single student`);
+    console.log(`   POST   /students - Create new student`);
+    console.log(`   PUT    /students/:id - Update student`);
+    console.log(`   DELETE /students/:id - Delete student`);
+    console.log(`   GET    /students/department/:department - Filter by department`);
+    console.log(`   GET    /students/grade/:grade - Filter by grade`);
+});
