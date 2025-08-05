@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS vs TailwindCSS: Complete Comparison</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: #f8fafc;
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .comparison-table th {
+        background: #1e40af;
+        color: white;
+        padding: 16px;
+        text-align: left;
+        font-weight: 600;
+      }
+
+      .comparison-table td {
+        padding: 16px;
+        border-bottom: 1px solid #e5e7eb;
+        vertical-align: top;
+      }
+
+      .comparison-table tr:hover {
+        background: #f9fafb;
+      }
+
+      .feature-name {
+        font-weight: 600;
+        color: #374151;
+        background: #f3f4f6;
+      }
+
+      .css-example {
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding: 12px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        margin: 8px 0;
+      }
+
+      .tailwind-example {
+        background: #dbeafe;
+        border-left: 4px solid #3b82f6;
+        padding: 12px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        margin: 8px 0;
+      }
+
+      .live-demo {
+        background: #f0fdf4;
+        border: 2px solid #22c55e;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 12px 0;
+      }
+
+      .demo-title {
+        font-weight: 600;
+        color: #166534;
+        margin-bottom: 8px;
+      }
+
+      .editable-code {
+        background: #1f2937;
+        color: #f9fafb;
+        padding: 16px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 12px 0;
+        border: none;
+        width: 100%;
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .editable-code:focus {
+        outline: 2px solid #3b82f6;
+      }
+
+      .update-btn {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        margin: 4px 0;
+      }
+
+      .update-btn:hover {
+        background: #2563eb;
+      }
+
+      .pros-cons {
+        display: flex;
+        gap: 16px;
+        margin: 12px 0;
+      }
+
+      .pros,
+      .cons {
+        flex: 1;
+        padding: 12px;
+        border-radius: 6px;
+      }
+
+      .pros {
+        background: #f0fdf4;
+        border-left: 4px solid #22c55e;
+      }
+
+      .cons {
+        background: #fef2f2;
+        border-left: 4px solid #ef4444;
+      }
+
+      .pros h4,
+      .cons h4 {
+        margin: 0 0 8px 0;
+        font-weight: 600;
+      }
+
+      .pros h4 {
+        color: #166534;
+      }
+
+      .cons h4 {
+        color: #991b1b;
+      }
+
+      .pros ul,
+      .cons ul {
+        margin: 0;
+        padding-left: 20px;
+        font-size: 14px;
+      }
+
+      .pros li,
+      .cons li {
+        margin: 4px 0;
+      }
+
+      .interactive-section {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin: 20px 0;
+      }
+
+      @media (max-width: 768px) {
+        .demo-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pros-cons {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="max-w-7xl mx-auto py-8 px-4">
+      <h1 class="text-4xl font-bold text-center mb-4 text-blue-600">
+        CSS vs TailwindCSS: Complete Comparison
+      </h1>
+      <p class="text-center text-lg text-gray-600 mb-8">
+        Interactive playground to understand the differences between traditional
+        CSS and Tailwind CSS
+      </p>
+
+      <!-- Interactive Comparison Table -->
+      <div class="interactive-section">
+        <h2 class="section-title">📊 Feature Comparison Table</h2>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>📌 Feature</th>
+              <th>🧑‍🎓 CSS (Traditional)</th>
+              <th>⚡ Tailwind CSS (Utility-first)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feature-name">Setup</td>
+              <td>
+                <div class="css-example">/* Create separate .css file */</div>
+                <div class="pros-cons">
+                  <div class="pros">
+                    <h4>✅ Pros</h4>
+                    <ul>
+                      <li>Simple file structure</li>
+                      <li>No dependencies</li>
+                    </ul>
+                  </div>
+                  <div class="cons">
+                    <h4>❌ Cons</h4>
+                    <ul>
+                      <li>Manual file management</li>
+                      <li>More setup steps</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="tailwind-example">
+                  CDN: &lt;script src="tailwindcss.com"&gt;
+                </div>
+                <div class="pros-cons">
+                  <div class="pros">
+                    <h4>✅ Pros</h4>
+                    <ul>
+                      <li>Quick setup</li>
+                      <li>No file creation needed</li>
+                    </ul>
+                  </div>
+                  <div class="cons">
+                    <h4>❌ Cons</h4>
+                    <ul>
+                      <li>External dependency</li>
+                      <li>Larger bundle size</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="feature-name">Styling Method</td>
+              <td>
+                <div class="css-example">
+                  .button { background: blue; padding: 10px; border-radius: 5px;
+                  }
+                </div>
+                <div class="live-demo">
+                  <div class="demo-title">CSS Example:</div>
+                  <textarea class="editable-code" id="css-styling">
+.my-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+}</textarea
+                  >
+                  <button class="update-btn" onclick="updateCSSDemo()">
+                    Update CSS
+                  </button>
+                  <div id="css-demo-result" class="mt-4">
+                    <button class="my-button">CSS Button</button>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="tailwind-example">
+                  class="bg-blue-500 text-white px-6 py-3 rounded-lg
+                  font-semibold"
+                </div>
+                <div class="live-demo">
+                  <div class="demo-title">Tailwind Example:</div>
+                  <textarea class="editable-code" id="tailwind-styling">
+bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold</textarea
+                  >
+                  <button class="update-btn" onclick="updateTailwindDemo()">
+                    Update Tailwind
+                  </button>
+                  <div id="tailwind-demo-result" class="mt-4">
+                    <button
+                      class="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold"
+                    >
+                      Tailwind Button
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="feature-name">Development Speed</td>
+              <td>
+                <div class="css-example">
+                  /* Write CSS, then apply classes */
+                </div>
+                <div class="pros-cons">
+                  <div class="pros">
+                    <h4>✅ Pros</h4>
+                    <ul>
+                      <li>Full control</li>
+                      <li>Custom designs</li>
+                    </ul>
+                  </div>
+                  <div class="cons">
+                    <h4>❌ Cons</h4>
+                    <ul>
+                      <li>Slower development</li>
+                      <li>More code to write</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="tailwind-example">/* Apply classes directly */</div>
+                <div class="pros-cons">
+                  <div class="pros">
+                    <h4>✅ Pros</h4>
+                    <ul>
+                      <li>Rapid prototyping</li>
+                      <li>Less code</li>
+                    </ul>
+                  </div>
+                  <div class="cons">
+                    <h4>❌ Cons</h4>
+                    <ul>
+                      <li>Limited customization</li>
+                      <li>Learning curve</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="feature-name">Responsiveness</td>
+              <td>
+                <div class="css-example">
+                  @media (max-width: 768px) { .container { width: 100%; } }
+                </div>
+              </td>
+              <td>
+                <div class="tailwind-example">
+                  class="w-full md:w-1/2 lg:w-1/3"
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="feature-name">Best For</td>
+              <td>
+                <div class="css-example">• Beginners learning CSS</div>
+                <div class="css-example">• Custom designs</div>
+                <div class="css-example">• Small projects</div>
+              </td>
+              <td>
+                <div class="tailwind-example">• Rapid prototyping</div>
+                <div class="tailwind-example">• React/Next.js apps</div>
+                <div class="tailwind-example">• Team projects</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Live Code Comparison -->
+      <div class="interactive-section">
+        <h2 class="section-title">💻 Live Code Comparison</h2>
+        <div class="demo-grid">
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-blue-600">
+              CSS Approach
+            </h3>
+            <div class="live-demo">
+              <div class="demo-title">HTML:</div>
+              <textarea class="editable-code" id="css-html">
+&lt;div class="card"&gt;
+  &lt;h3 class="card-title"&gt;CSS Card&lt;/h3&gt;
+  &lt;p class="card-text"&gt;This is styled with CSS classes&lt;/p&gt;
+  &lt;button class="card-btn"&gt;Click me&lt;/button&gt;
+&lt;/div&gt;</textarea
+              >
+
+              <div class="demo-title">CSS:</div>
+              <textarea class="editable-code" id="css-styles">
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  max-width: 300px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.card-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}</textarea
+              >
+              <button class="update-btn" onclick="updateCSSCard()">
+                Update CSS Card
+              </button>
+              <div id="css-card-result" class="mt-4"></div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-blue-600">
+              Tailwind Approach
+            </h3>
+            <div class="live-demo">
+              <div class="demo-title">HTML (with Tailwind classes):</div>
+              <textarea class="editable-code" id="tailwind-html">
+&lt;div class="bg-white rounded-xl p-6 shadow-lg max-w-sm"&gt;
+  &lt;h3 class="text-2xl font-bold text-gray-800 mb-3"&gt;Tailwind Card&lt;/h3&gt;
+  &lt;p class="text-gray-600 mb-4"&gt;This is styled with Tailwind classes&lt;/p&gt;
+  &lt;button class="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600"&gt;Click me&lt;/button&gt;
+&lt;/div&gt;</textarea
+              >
+              <button class="update-btn" onclick="updateTailwindCard()">
+                Update Tailwind Card
+              </button>
+              <div id="tailwind-card-result" class="mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsive Design Demo -->
+      <div class="interactive-section">
+        <h2 class="section-title">📱 Responsive Design Comparison</h2>
+        <div class="demo-grid">
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-blue-600">
+              CSS Media Queries
+            </h3>
+            <textarea class="editable-code" id="css-responsive">
+.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}</textarea
+            >
+            <button class="update-btn" onclick="updateCSSResponsive()">
+              Update CSS Responsive
+            </button>
+            <div id="css-responsive-result" class="mt-4"></div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-blue-600">
+              Tailwind Responsive Classes
+            </h3>
+            <textarea class="editable-code" id="tailwind-responsive">
+grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4</textarea
+            >
+            <button class="update-btn" onclick="updateTailwindResponsive()">
+              Update Tailwind Responsive
+            </button>
+            <div id="tailwind-responsive-result" class="mt-4"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="interactive-section">
+        <h2 class="section-title">🎯 When to Use What?</h2>
+        <div class="demo-grid">
+          <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+            <h3 class="text-xl font-semibold text-green-800 mb-4">
+              Use CSS When:
+            </h3>
+            <ul class="text-green-700 space-y-2">
+              <li>• Learning web development fundamentals</li>
+              <li>• Building custom, unique designs</li>
+              <li>• Working on small projects</li>
+              <li>• Need full control over styling</li>
+              <li>• Creating complex animations</li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+            <h3 class="text-xl font-semibold text-blue-800 mb-4">
+              Use Tailwind When:
+            </h3>
+            <ul class="text-blue-700 space-y-2">
+              <li>• Building modern web applications</li>
+              <li>• Working with React/Next.js</li>
+              <li>• Need rapid prototyping</li>
+              <li>• Working in teams</li>
+              <li>• Building consistent UI systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style id="dynamic-css"></style>
+
+    <script>
+      // Initialize default values
+      const cssStyling = document.getElementById("css-styling");
+      const tailwindStyling = document.getElementById("tailwind-styling");
+      const cssHtml = document.getElementById("css-html");
+      const cssStyles = document.getElementById("css-styles");
+      const tailwindHtml = document.getElementById("tailwind-html");
+      const cssResponsive = document.getElementById("css-responsive");
+      const tailwindResponsive = document.getElementById("tailwind-responsive");
+
+      // Set default values
+      cssStyling.value = `.my-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+}`;
+
+      tailwindStyling.value = `bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold`;
+
+      cssHtml.value = `<div class="card">
+  <h3 class="card-title">CSS Card</h3>
+  <p class="card-text">This is styled with CSS classes</p>
+  <button class="card-btn">Click me</button>
+</div>`;
+
+      cssStyles.value = `.card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  max-width: 300px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.card-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}`;
+
+      tailwindHtml.value = `<div class="bg-white rounded-xl p-6 shadow-lg max-w-sm">
+  <h3 class="text-2xl font-bold text-gray-800 mb-3">Tailwind Card</h3>
+  <p class="text-gray-600 mb-4">This is styled with Tailwind classes</p>
+  <button class="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600">Click me</button>
+</div>`;
+
+      cssResponsive.value = `.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}`;
+
+      tailwindResponsive.value = `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4`;
+
+      // Update functions
+      function updateCSSDemo() {
+        const dynamicCSS = document.getElementById("dynamic-css");
+        dynamicCSS.textContent = cssStyling.value;
+      }
+
+      function updateTailwindDemo() {
+        const result = document.getElementById("tailwind-demo-result");
+        const classes = tailwindStyling.value;
+        result.innerHTML = `<button class="${classes}">Tailwind Button</button>`;
+      }
+
+      function updateCSSCard() {
+        const dynamicCSS = document.getElementById("dynamic-css");
+        dynamicCSS.textContent = cssStyles.value;
+
+        const result = document.getElementById("css-card-result");
+        result.innerHTML = cssHtml.value;
+      }
+
+      function updateTailwindCard() {
+        const result = document.getElementById("tailwind-card-result");
+        result.innerHTML = tailwindHtml.value;
+      }
+
+      function updateCSSResponsive() {
+        const dynamicCSS = document.getElementById("dynamic-css");
+        dynamicCSS.textContent =
+          cssResponsive.value +
+          `
+        .responsive-item {
+          background: #3b82f6;
+          color: white;
+          padding: 20px;
+          border-radius: 8px;
+          text-align: center;
+        }
+      `;
+
+        const result = document.getElementById("css-responsive-result");
+        result.innerHTML = `
+        <div class="responsive-grid">
+          <div class="responsive-item">Item 1</div>
+          <div class="responsive-item">Item 2</div>
+          <div class="responsive-item">Item 3</div>
+        </div>
+      `;
+      }
+
+      function updateTailwindResponsive() {
+        const classes = tailwindResponsive.value;
+        const result = document.getElementById("tailwind-responsive-result");
+        result.innerHTML = `
+        <div class="${classes}">
+          <div class="bg-blue-500 text-white p-5 rounded-lg text-center">Item 1</div>
+          <div class="bg-blue-500 text-white p-5 rounded-lg text-center">Item 2</div>
+          <div class="bg-blue-500 text-white p-5 rounded-lg text-center">Item 3</div>
+        </div>
+      `;
+      }
+
+      // Initialize all demos
+      updateCSSDemo();
+      updateTailwindDemo();
+      updateCSSCard();
+      updateTailwindCard();
+      updateCSSResponsive();
+      updateTailwindResponsive();
+    </script>
+  </body>
+</html>

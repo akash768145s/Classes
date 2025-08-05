@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TailwindCSS vs Inline CSS</title>
+  <!-- ✅ Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-10 space-y-6 bg-gray-100">
+
+  <!-- 🔴 Inline CSS Button -->
+  <div>
+    <h2 class="text-lg font-semibold mb-2">Inline CSS Button</h2>
+    <button style="background: red; color: white; padding: 10px">
+      Click
+    </button>
+  </div>
+
+  <!-- 🔵 Tailwind CSS Button -->
+  <div>
+    <h2 class="text-lg font-semibold mb-2">Tailwind CSS Button</h2>
+    <button class="bg-red-500 text-white px-4 py-2 rounded">
+      Click
+    </button>
+  </div>
+
+  <!-- 🟢 Responsive Text Example -->
+  <div>
+    <h2 class="text-lg font-semibold mb-2">Responsive Text Example</h2>
+    <p class="text-black sm:text-blue-500 md:text-red-500 lg:text-green-500 xl:text-pink-500 text-3xl font-medium">
+      Resize the window to see the color change!
+    </p>
+  </div>
+
+</body>
+</html>
